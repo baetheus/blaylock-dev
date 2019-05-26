@@ -1,11 +1,12 @@
 {
   "name": "blaylock-dev",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "@nll/css": "^6.7.1",
     "@nll/dux": "^2.1.0",
     "@types/jest": "24.0.13",
+    "@types/lodash": "^4.14.132",
     "@types/node": "12.0.2",
     "@types/react": "16.8.18",
     "@types/react-dom": "16.8.4",
@@ -20,13 +21,15 @@
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",
+    "standard-version": "^6.0.1",
     "typescript": "3.4.5"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "release": "npx standard-version"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -42,8 +45,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@types/lodash": "^4.14.132"
   }
 }
