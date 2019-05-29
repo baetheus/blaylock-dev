@@ -3,7 +3,7 @@ import * as io from 'io-ts';
 import { createOptionFromNullable, DateFromISOString } from 'io-ts-types';
 import { fromEither, Req } from 'libraries/req';
 
-const getGithubQuery = `{ viewer { gists(last:50) { nodes { name description updatedAt } } repositories(last:50) { nodes { nameWithOwner description url updatedAt } } } organization(login: "nullpub") { repositories(last: 50) { nodes { nameWithOwner description url updatedAt } } }}`;
+const getGithubQuery = `{ viewer { gists(last:5) { nodes { name description updatedAt } } repositories(last:5) { nodes { nameWithOwner description url updatedAt } } } organization(login: "nullpub") { repositories(last: 5) { nodes { nameWithOwner description url updatedAt } } }}`;
 
 const headers = {
   Authorization: `Bearer ${process.env.REACT_APP_GITHUB_API_TOKEN}`,

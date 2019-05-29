@@ -15,8 +15,11 @@ export interface HomeProps {}
  */
 export const Home: React.FC<HomeProps> = () => {
   return (
-    <main className="page--home fld-column flg-5 flai-center pa-5 fls-1-1">
+    <main className="page--home fld-column flg-5 flai-center pa-5">
       <Header />
+      <section>
+        <h3>Hi, I'm Brandon and this is what I've been doing lately.</h3>
+      </section>
       <section className="page--home--grid">
         <Devto />
         <Github />
