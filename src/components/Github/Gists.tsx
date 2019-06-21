@@ -1,8 +1,8 @@
-import { GistT } from 'libraries/github';
-import React from 'react';
+import { FunctionalComponent, h } from 'preact';
+import { Gist } from '~/libraries/github';
 
 export interface GistsProps {
-  gists?: GistT;
+  gists?: Gist[];
 }
 
 /**
@@ -11,21 +11,21 @@ export interface GistsProps {
  * @example
  * <Gists />
  */
-export const Gists: React.FC<GistsProps> = ({ gists = [] }) => {
+export const Gists: FunctionalComponent<GistsProps> = ({ gists = [] }) => {
   return (
-    <ul className="fld-column flg-4">
+    <ul className="fld-col flg-4">
       {gists.length === 0 && <div>No Gistsitories!</div>}
       {gists
         .sort((a: any, b: any) => b.updatedAt - a.updatedAt)
         .map(g => (
-          <li className="fld-column flg-3" key={g.name}>
+          <li className="fld-col flg-3" key={g.name}>
             <div className="font-header fsu-2">
               <a
                 href={`https://gist.github.com/baetheus/${g.name}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {g.description.getOrElse('No Description')}
+                {g.description || 'No Description'}
               </a>
             </div>
             <div className="fsd-1">

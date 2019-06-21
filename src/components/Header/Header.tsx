@@ -1,4 +1,4 @@
-import React from 'react';
+import { FunctionalComponent, h } from 'preact';
 
 import { HeaderNav } from './HeaderNav';
 
@@ -10,7 +10,7 @@ export interface HeaderProps {}
  * @example
  * <Header />
  */
-export const Header: React.FC<HeaderProps> = () => {
+export const Header: FunctionalComponent<HeaderProps> = () => {
   return (
     <header>
       <h1 className="font-header">Brandon Blaylock</h1>

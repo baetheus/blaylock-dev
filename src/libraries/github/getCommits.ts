@@ -1,58 +1,66 @@
-import { Task } from 'fp-ts/lib/Task';
-import * as io from 'io-ts';
-import { createOptionFromNullable, DateFromISOString } from 'io-ts-types';
-import { fromEither, Req } from 'libraries/req';
+import { AsyncData, fromEither } from '@nll/dux';
+import { of, Task } from 'fp-ts/lib/Task';
+import * as t from 'io-ts';
+import { DateFromISOString } from 'io-ts-types/lib/DateFromISOString';
 
 const getGithubQuery = `{ viewer { gists(last:5) { nodes { name description updatedAt } } repositories(last:5) { nodes { nameWithOwner description url updatedAt } } } organization(login: "nullpub") { repositories(last: 5) { nodes { nameWithOwner description url updatedAt } } }}`;
 
 const headers = {
-  Authorization: `Bearer ${process.env.REACT_APP_GITHUB_API_TOKEN}`,
+  Authorization: `Bearer ${process.env.GITHUB_API_TOKEN}`,
 };
 
 const url = 'https://api.github.com/graphql';
 
-const RepositoryIO = io.interface({
-  nameWithOwner: io.string,
-  description: createOptionFromNullable(io.string),
-  url: io.string,
-  updatedAt: DateFromISOString,
-});
+export const Repository = t.intersection([
+  t.type({
+    nameWithOwner: t.string,
+    url: t.string,
+    updatedAt: DateFromISOString,
+  }),
+  t.partial({
+    description: t.string,
+  }),
+]);
+export type Repository = t.TypeOf<typeof Repository>;
 
-const GistIO = io.interface({
-  name: io.string,
-  description: createOptionFromNullable(io.string),
-  updatedAt: DateFromISOString,
-});
+export const Gist = t.intersection([
+  t.type({
+    name: t.string,
+    updatedAt: DateFromISOString,
+  }),
+  t.partial({
+    description: t.string,
+  }),
+]);
+export type Gist = t.TypeOf<typeof Gist>;
 
-const GetGithub = io.interface({
-  data: io.interface({
-    viewer: io.interface({
-      gists: io.interface({
-        nodes: io.array(GistIO),
+export const Github = t.type({
+  data: t.type({
+    viewer: t.type({
+      gists: t.type({
+        nodes: t.array(Gist),
       }),
-      repositories: io.interface({
-        nodes: io.array(RepositoryIO),
+      repositories: t.type({
+        nodes: t.array(Repository),
       }),
     }),
-    organization: io.interface({
-      repositories: io.interface({
-        nodes: io.array(RepositoryIO),
+    organization: t.type({
+      repositories: t.type({
+        nodes: t.array(Repository),
       }),
     }),
   }),
 });
+export type Github = t.TypeOf<typeof Github>;
 
-export type GetGithubT = Req<io.Errors, typeof GetGithub._A>;
-export type RepositoryT = (typeof RepositoryIO._A)[];
-export type GistT = (typeof GistIO._A)[];
+export type GithubAD = AsyncData<t.Errors, Github>;
 
-export const getGithub = new Task(() =>
+export const getGithub: Task<GithubAD> = () =>
   fetch(url, {
     method: 'POST',
     body: JSON.stringify({ query: getGithubQuery }),
     headers,
   })
     .then(res => res.json())
-    .then(GetGithub.decode)
-    .then(fromEither)
-);
+    .then(Github.decode)
+    .then(fromEither);

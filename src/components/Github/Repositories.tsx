@@ -1,8 +1,8 @@
-import { RepositoryT } from 'libraries/github';
-import React from 'react';
+import { FunctionalComponent, h } from 'preact';
+import { Repository } from '~/libraries/github';
 
 export interface ReposProps {
-  repos?: RepositoryT;
+  repos?: Repository[];
 }
 
 /**
@@ -11,14 +11,14 @@ export interface ReposProps {
  * @example
  * <Repos />
  */
-export const Repos: React.FC<ReposProps> = ({ repos = [] }) => {
+export const Repos: FunctionalComponent<ReposProps> = ({ repos = [] }) => {
   return (
-    <ul className="fld-column flg-4">
+    <ul className="fld-col flg-4">
       {repos.length === 0 && <div>No Repositories!</div>}
       {repos
         .sort((a: any, b: any) => b.updatedAt - a.updatedAt)
         .map(r => (
-          <li className="fld-column flg-3" key={r.nameWithOwner}>
+          <li className="fld-col flg-3" key={r.nameWithOwner}>
             <div className="font-header fsu-2">
               <a href={r.url} target="_blank" rel="noopener noreferrer">
                 {r.nameWithOwner}
@@ -28,7 +28,7 @@ export const Repos: React.FC<ReposProps> = ({ repos = [] }) => {
               <em>{r.updatedAt.toLocaleString()}</em>
             </div>
             <div>
-              <em>{r.description.getOrElse('No Description')}</em>
+              <em>{r.description || 'No Description'}</em>
             </div>
           </li>
         ))}

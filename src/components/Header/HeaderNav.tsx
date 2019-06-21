@@ -1,7 +1,5 @@
-import './HeaderNav.css';
-
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { FunctionalComponent, h } from 'preact';
+import { Link } from 'preact-router';
 
 export interface HeaderNavProps {}
 
@@ -11,15 +9,15 @@ export interface HeaderNavProps {}
  * @example
  * <HeaderNav />
  */
-export const HeaderNav: React.FC<HeaderNavProps> = () => {
+export const HeaderNav: FunctionalComponent<HeaderNavProps> = () => {
   return (
     <nav className="fls-1-1">
       <ul className="fld-row flg-4">
         <li>
-          <Link to="/">Home</Link>
+          <Link href="/">Home</Link>
         </li>
         <li>
-          <Link to="/about/">About</Link>
+          <Link href="/about">About</Link>
         </li>
       </ul>
     </nav>

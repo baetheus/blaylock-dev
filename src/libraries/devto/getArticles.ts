@@ -1,47 +1,64 @@
+import { AsyncData, fromEither } from '@nll/dux';
+import { isLeft } from 'fp-ts/lib/Either';
 import { Task } from 'fp-ts/lib/Task';
-import * as io from 'io-ts';
-import { createOptionFromNullable, DateFromISOString } from 'io-ts-types';
-import { fromEither, Req } from 'libraries/req';
+import * as t from 'io-ts';
+import { reporter } from 'io-ts-reporters';
+import { DateFromISOString } from 'io-ts-types/lib/DateFromISOString';
 
 const devtoUrl = 'https://dev.to/api/';
 
-const UserIO = io.interface({
-  name: io.string,
-  username: io.string,
-  twitter_username: createOptionFromNullable(io.string),
-  github_username: createOptionFromNullable(io.string),
-  website_url: createOptionFromNullable(io.string),
-  profile_image: createOptionFromNullable(io.string),
-  profile_image_90: createOptionFromNullable(io.string),
-});
+export const User = t.intersection([
+  t.type({
+    name: t.string,
+    username: t.string,
+  }),
+  t.partial({
+    twitter_username: t.union([t.string, t.null]),
+    github_username: t.string,
+    website_url: t.string,
+    profile_image: t.string,
+    profile_image_90: t.string,
+  }),
+]);
+export type User = t.TypeOf<typeof User>;
 
-const ArticleIO = io.interface({
-  type_of: io.string,
-  id: io.number,
-  title: io.string,
-  description: io.string,
-  cover_image: createOptionFromNullable(io.string),
-  published_at: DateFromISOString,
-  tag_list: io.array(io.string),
-  slug: io.string,
-  path: io.string,
-  url: io.string,
-  canonical_url: io.string,
-  comments_count: io.number,
-  positive_reactions_count: io.number,
-  published_timestamp: DateFromISOString,
-  user: UserIO,
-});
+export const Article = t.intersection([
+  t.type({
+    type_of: t.string,
+    id: t.number,
+    title: t.string,
+    published_at: DateFromISOString,
+  }),
+  t.partial({
+    description: t.string,
+    tag_list: t.array(t.string),
+    slug: t.string,
+    path: t.string,
+    url: t.string,
+    canonical_url: t.string,
+    comments_count: t.number,
+    positive_reactions_count: t.number,
+    published_timestamp: DateFromISOString,
+    user: User,
+    cover_image: t.union([t.string, t.null]),
+  }),
+]);
+export type Article = t.TypeOf<typeof Article>;
 
-const GetArticlesIO = io.array(ArticleIO);
+export const Articles = t.array(Article);
+export type Articles = t.TypeOf<typeof Articles>;
 
-export type ArticleT = typeof ArticleIO._A;
-export type GetArticlesT = Req<io.Errors, io.TypeOf<typeof GetArticlesIO>>;
+export type ArticlesAD = AsyncData<t.Errors, Articles>;
 
-export const getArticles = (username: string) =>
-  new Task(() =>
-    fetch(`${devtoUrl}/articles?username=${username}`)
-      .then(res => res.json())
-      .then(GetArticlesIO.decode)
-      .then(fromEither)
-  );
+export const getArticlesTask = (username: string): Task<ArticlesAD> => () =>
+  fetch(`${devtoUrl}/articles?username=${username}`)
+    .then(res => res.json())
+    .then(Articles.decode)
+    .then(e => {
+      if (isLeft(e)) {
+        console.log('Validation Error during ');
+        console.log(reporter(e).join('\n\n'));
+      }
+      return e;
+    })
+    .then(fromEither);

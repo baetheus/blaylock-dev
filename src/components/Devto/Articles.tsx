@@ -1,8 +1,8 @@
-import { ArticleT } from 'libraries/devto';
-import React from 'react';
+import { FunctionalComponent, h } from 'preact';
+import { Articles as ArticlesT } from '~/libraries/devto';
 
 export interface ArticlesProps {
-  articles?: ArticleT[];
+  articles?: ArticlesT;
 }
 
 /**
@@ -11,14 +11,16 @@ export interface ArticlesProps {
  * @example
  * <Articles />
  */
-export const Articles: React.FC<ArticlesProps> = ({ articles = [] }) => {
+export const Articles: FunctionalComponent<ArticlesProps> = ({
+  articles = [],
+}) => {
   return (
-    <ul className="fld-column flg-4">
+    <ul className="fld-col flg-4">
       {articles.length === 0 && <div>No Blog Articles!</div>}
       {articles
         .sort((a: any, b: any) => b.publishedAt - a.publishedAt)
         .map(a => (
-          <li className="fld-column flg-3" key={a.id}>
+          <li className="fld-col flg-3" key={a.id}>
             <div className="font-header fsu-2">
               <a
                 href={a.canonical_url}
@@ -31,7 +33,7 @@ export const Articles: React.FC<ArticlesProps> = ({ articles = [] }) => {
             <div className="fsd-1">
               <em>{a.published_at.toLocaleString()}</em>
             </div>
-            <p>{a.description}</p>
+            <p>{a.description || 'No Description'}</p>
           </li>
         ))}
     </ul>

@@ -8,16 +8,25 @@
       "type": "npm",
       "script": "start",
       "isBackground": true,
-      "problemMatcher": [],
-      "group": {
-        "kind": "build",
-        "isDefault": true
+      "problemMatcher": {
+        "base": "$tsc-watch",
+        "owner": "parcel",
+        "fileLocation": "relative",
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": {
+            "regexp": "(.*?)"
+          },
+          "endsPattern": {
+            "regexp": ".*Built in.*"
+          }
+        }
       }
     },
     {
       "label": "Create Component",
       "type": "shell",
-      "command": "schematics @nll/schematics-react:component --path=${input:componentPath} --name=\"${input:componentName}\"",
+      "command": "schematics @nll/schematics-preact:component --path=${input:componentPath} --name=\"${input:componentName}\"",
       "problemMatcher": []
     }
   ],
@@ -33,7 +42,7 @@
       "description": "Select Location",
       "default": "src/components",
       "type": "pickString",
-      "options": ["src/components", "src/pages"]
+      "options": ["src/components", "src/routes"]
     }
   ]
 }

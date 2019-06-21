@@ -1,14 +1,11 @@
-import './Devto.css';
-
-import { Pending } from 'components/Req';
-import { formatValidationError } from 'io-ts-reporters';
-import { getArticles, GetArticlesT } from 'libraries/devto';
-import { pending } from 'libraries/req';
-import React, { useState } from 'react';
+import { FunctionalComponent, h } from 'preact';
+import { Article } from '~/libraries/devto';
 
 import { Articles } from './Articles';
 
-export interface DevtoProps {}
+export interface DevtoProps {
+  articles?: Article[];
+}
 
 /**
  * @render react
@@ -16,17 +13,9 @@ export interface DevtoProps {}
  * @example
  * <Devto />
  */
-export const Devto: React.FC<DevtoProps> = () => {
-  const [res, setRes] = useState<GetArticlesT>(pending());
-
-  if (res.type === 'Pending') {
-    getArticles('baetheus')
-      .run()
-      .then(setRes);
-  }
-
+export const Devto: FunctionalComponent<DevtoProps> = ({ articles = [] }) => {
   return (
-    <section className="fld-column flg-4">
+    <section className="fld-col flg-4">
       <h2>
         dev.to/
         <a
@@ -37,18 +26,7 @@ export const Devto: React.FC<DevtoProps> = () => {
           baetheus
         </a>
       </h2>
-      {res.fold(
-        <Pending />,
-        err => (
-          <pre>{err.map(formatValidationError).join('\n\n')}</pre>
-        ),
-        data => (
-          <Articles articles={data} />
-        ),
-        data => (
-          <Articles articles={data} />
-        )
-      )}
+      <Articles articles={articles} />
     </section>
   );
 };

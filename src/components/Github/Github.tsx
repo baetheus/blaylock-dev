@@ -1,13 +1,12 @@
-import { Pending } from 'components/Req';
-import { formatValidationError } from 'io-ts-reporters';
-import { getGithub, GetGithubT } from 'libraries/github';
-import { pending } from 'libraries/req';
-import React, { useState } from 'react';
+import { FunctionalComponent, h } from 'preact';
+import { Github as GithubT, Repository } from '~/libraries/github';
 
 import { Gists } from './Gists';
 import { Repos } from './Repositories';
 
-export interface GithubProps {}
+export interface GithubProps {
+  github: GithubT;
+}
 
 /**
  * @render react
@@ -15,15 +14,20 @@ export interface GithubProps {}
  * @example
  * <Github />
  */
-export const Github: React.FC<GithubProps> = () => {
-  const [res, setRes] = useState<GetGithubT>(pending());
-
-  if (res.type === 'Pending') {
-    getGithub.run().then(setRes);
-  }
+export const Github: FunctionalComponent<GithubProps> = ({ github }) => {
+  const {
+    repositories: selfRepos,
+    gists: { nodes: gists },
+  } = github.data.viewer;
+  const { repositories: orgRepos } = github.data.organization;
+  const reposRaw = selfRepos.nodes.concat(orgRepos.nodes);
+  const repos = reposRaw.reduce(
+    (rs, r) => (rs.some(r1 => r1.url === r.url) ? rs : rs.concat(r)),
+    [] as Repository[]
+  );
 
   return (
-    <section className="fld-column flg-4">
+    <section className="fld-col flg-4">
       <h2>
         github/
         <a
@@ -34,33 +38,18 @@ export const Github: React.FC<GithubProps> = () => {
           baetheus
         </a>
       </h2>
-      {res.fold(
-        <Pending />,
-        err => (
-          <pre>{err.map(formatValidationError).join('\n\n')}</pre>
-        ),
-        data => (
-          <>
-            <Repos
-              repos={data.data.viewer.repositories.nodes.concat(
-                data.data.organization.repositories.nodes
-              )}
-            />
-            <Gists gists={data.data.viewer.gists.nodes} />
-          </>
-        ),
-        data => (
-          <div>
-            <div>Refreshing...</div>
-            <Repos
-              repos={data.data.viewer.repositories.nodes.concat(
-                data.data.organization.repositories.nodes
-              )}
-            />
-            <Gists gists={data.data.viewer.gists.nodes} />
-          </div>
-        )
-      )}
+      <Repos repos={repos} />
+      <h2>
+        gist/
+        <a
+          href="https://gist.github.com/baetheus"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          baetheus
+        </a>
+      </h2>
+      <Gists gists={gists} />
     </section>
   );
 };
