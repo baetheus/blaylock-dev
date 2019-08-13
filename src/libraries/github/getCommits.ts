@@ -3,7 +3,7 @@ import { of, Task } from 'fp-ts/lib/Task';
 import * as t from 'io-ts';
 import { DateFromISOString } from 'io-ts-types/lib/DateFromISOString';
 
-const getGithubQuery = `{ viewer { gists(last:5) { nodes { name description updatedAt } } repositories(last:5) { nodes { nameWithOwner description url updatedAt } } } organization(login: "nullpub") { repositories(last: 5) { nodes { nameWithOwner description url updatedAt } } }}`;
+const getGithubQuery = `{ viewer { gists(last:5) { nodes { name description updatedAt } } repositories(last:7) { nodes { nameWithOwner description url updatedAt } } } organization(login: "nullpub") { repositories(last: 7) { nodes { nameWithOwner description url updatedAt } } }}`;
 
 const headers = {
   Authorization: `Bearer ${process.env.GITHUB_API_TOKEN}`,
