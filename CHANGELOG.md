@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.2](https://github.com/baetheus/blaylock-dev/compare/v2.0.1...v2.0.2) (2019-08-13)
+
+
+### Bug Fixes
+
+* add noscript to index.html ([9652431](https://github.com/baetheus/blaylock-dev/commit/9652431))
+* upped repo counts to 7 for baetheus and nullpub ([c338906](https://github.com/baetheus/blaylock-dev/commit/c338906))
+
 ### [2.0.1](https://github.com/baetheus/blaylock-dev/compare/v2.0.0...v2.0.1) (2019-08-12)
 
 
