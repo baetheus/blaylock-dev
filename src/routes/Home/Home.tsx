@@ -1,8 +1,10 @@
 import { FunctionalComponent, h } from 'preact';
 import { Failure, Pending } from '~/components/Async';
 import { Devto } from '~/components/Devto';
+import { Footer } from '~/components/Footer';
 import { Github } from '~/components/Github';
 import { Header } from '~/components/Header';
+import { environment, version } from '~/environments';
 import { getArticlesTask } from '~/libraries/devto';
 import { getGithub } from '~/libraries/github';
 import { useTaskData } from '~/libraries/task';
@@ -54,6 +56,7 @@ export const Home: FunctionalComponent<HomeProps> = () => {
           )
         )}
       </section>
+      <Footer link={environment.versionUrl} version={version} />
     </main>
   );
 };

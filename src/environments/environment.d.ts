@@ -3,4 +3,5 @@ export interface Environment {
   useMocks: boolean;
   showLogs: boolean;
   refreshInterval: number;
+  versionUrl: string;
 }
