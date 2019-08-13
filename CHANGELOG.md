@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/baetheus/blaylock-dev/compare/v2.0.2...v2.1.0) (2019-08-13)
+
+
+### Features
+
+* added footer with version and link to tag ([4b667fa](https://github.com/baetheus/blaylock-dev/commit/4b667fa))
+
 ### [2.0.2](https://github.com/baetheus/blaylock-dev/compare/v2.0.1...v2.0.2) (2019-08-13)
 
 
