@@ -1,6 +1,6 @@
 {
   "name": "blaylock-dev",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Personal website for Brandon Blaylock",
   "main": "./src/index.html",
   "private": true,

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.2](https://github.com/baetheus/blaylock-dev/compare/v2.1.1...v2.1.2) (2019-08-13)
+
+
+### Bug Fixes
+
+* seo and accessibility fixes for pagespeed ([87737b3](https://github.com/baetheus/blaylock-dev/commit/87737b3))
+
 ### [2.1.1](https://github.com/baetheus/blaylock-dev/compare/v2.1.0...v2.1.1) (2019-08-13)
 
 
