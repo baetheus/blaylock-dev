@@ -19,7 +19,7 @@ export const Gists: FunctionalComponent<GistsProps> = ({ gists = [] }) => {
         .sort((a: any, b: any) => b.updatedAt - a.updatedAt)
         .map(g => (
           <li className="fld-col flg-3" key={g.name}>
-            <div className="font-header fsu-2">
+            <div className="fsu-2">
               <a
                 href={`https://gist.github.com/baetheus/${g.name}`}
                 target="_blank"

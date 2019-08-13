@@ -13,7 +13,7 @@
   "author": "Brandon Blaylock <brandon@null.pub> (https://blaylock.dev)",
   "license": "MPL-2.0",
   "dependencies": {
-    "@nll/css": "^8.3.0",
+    "@nll/css": "^8.4.0",
     "@nll/dux": "^5.1.2",
     "io-ts": "^2.0.1",
     "io-ts-reporters": "^1.0.0",

@@ -21,7 +21,7 @@ export const Articles: FunctionalComponent<ArticlesProps> = ({
         .sort((a: any, b: any) => b.publishedAt - a.publishedAt)
         .map(a => (
           <li className="fld-col flg-3" key={a.id}>
-            <div className="font-header fsu-2">
+            <div className="fsu-2">
               <a
                 href={a.canonical_url}
                 target="_blank"

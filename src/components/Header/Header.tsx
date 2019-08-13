@@ -13,7 +13,7 @@ export interface HeaderProps {}
 export const Header: FunctionalComponent<HeaderProps> = () => {
   return (
     <header>
-      <h1 className="font-header">Brandon Blaylock</h1>
+      <h1>Brandon Blaylock</h1>
       <HeaderNav />
     </header>
   );

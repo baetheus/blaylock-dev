@@ -23,7 +23,7 @@ export const Home: FunctionalComponent<HomeProps> = () => {
   const githubD = useTaskData(getGithub);
 
   return (
-    <main className="vw-p100 vhmn-vh100 fld-col flg-5 ai-ctr vwc-p100 vwcmx-em0 pwa-5">
+    <main className="vw-p100 vhmn-vh100 fld-col flg-5 ai-ctr vwc-p100 vwcmx-rem0 pwa-5">
       <Header />
       <section>
         <h3>Hi, I'm Brandon and this is what I've been doing lately.</h3>

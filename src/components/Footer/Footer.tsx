@@ -14,7 +14,10 @@ export const Footer: FunctionalComponent<FooterProps> = ({ link, version }) => {
   return (
     <footer class="fld-row ai-ctr jc-ctr">
       <span class="fs-u1">
-        Version <a href={`${link}${version}`}>{version}</a>
+        Version{' '}
+        <a target="_blank" href={`${link}${version}`}>
+          {version}
+        </a>
       </span>
     </footer>
   );

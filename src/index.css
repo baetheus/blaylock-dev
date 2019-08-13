@@ -1,12 +1,7 @@
 @import '../node_modules/@nll/css/dist/reset/reset.min.css';
-@import '../node_modules/@nll/css/dist/full/full.min.css';
+@import '../node_modules/@nll/css/dist/minimal/minimal.min.css';
 
-.font-head {
-  font-family: 'Cormorant Garamond', serif;
-}
-
-html,
-.font-content {
+html {
   font-family: 'Proza Libre', sans-serif;
 }
 

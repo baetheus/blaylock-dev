@@ -1,6 +1,8 @@
 # dependencies
-/.cache
 /node_modules
+
+# build
+/.cache
 
 # production
 /dist

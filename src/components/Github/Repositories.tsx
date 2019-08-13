@@ -19,7 +19,7 @@ export const Repos: FunctionalComponent<ReposProps> = ({ repos = [] }) => {
         .sort((a: any, b: any) => b.updatedAt - a.updatedAt)
         .map(r => (
           <li className="fld-col flg-3" key={r.nameWithOwner}>
-            <div className="font-header fsu-2">
+            <div className="fsu-2">
               <a href={r.url} target="_blank" rel="noopener noreferrer">
                 {r.nameWithOwner}
               </a>
