@@ -15,7 +15,7 @@ export interface DevtoProps {
  */
 export const Devto: FunctionalComponent<DevtoProps> = ({ articles = [] }) => {
   return (
-    <section className="fld-col flg-4">
+    <section className="fld-col flg-5">
       <h2>
         dev.to/
         <a
