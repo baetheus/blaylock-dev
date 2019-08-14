@@ -1,11 +1,9 @@
-import { AsyncData, fromEither } from '@nll/dux';
-import { isLeft } from 'fp-ts/lib/Either';
-import { Task } from 'fp-ts/lib/Task';
+import { DatumEither, fromEither } from '@nll/datum/es6/DatumEither';
+import { isLeft } from 'fp-ts/es6/Either';
+import { Task } from 'fp-ts/es6/Task';
 import * as t from 'io-ts';
 import { reporter } from 'io-ts-reporters';
 import { DateFromISOString } from 'io-ts-types/lib/DateFromISOString';
-
-const devtoUrl = 'https://dev.to/api/';
 
 export const User = t.intersection([
   t.type({
@@ -48,9 +46,12 @@ export type Article = t.TypeOf<typeof Article>;
 export const Articles = t.array(Article);
 export type Articles = t.TypeOf<typeof Articles>;
 
-export type ArticlesAD = AsyncData<t.Errors, Articles>;
+export type ArticlesAD = DatumEither<t.Errors, Articles>;
 
-export const getArticlesTask = (username: string): Task<ArticlesAD> => () =>
+export const getArticlesTask = (
+  username: string,
+  devtoUrl = 'https://dev.to/api/'
+): Task<ArticlesAD> => () =>
   fetch(`${devtoUrl}/articles?username=${username}`)
     .then(res => res.json())
     .then(Articles.decode)

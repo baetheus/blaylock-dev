@@ -1,3 +1,4 @@
+import { refreshFoldR } from '@nll/datum/es6/DatumEither';
 import { FunctionalComponent, h } from 'preact';
 import { Failure, Pending } from '~/components/Async';
 import { Devto } from '~/components/Devto';
@@ -12,6 +13,7 @@ import { useTaskData } from '~/libraries/task';
 export interface HomeProps {}
 
 const getArticles = getArticlesTask('baetheus');
+const constPending = () => <Pending />;
 
 /**
  * @name Home
@@ -29,9 +31,10 @@ export const Home: FunctionalComponent<HomeProps> = () => {
         <h3>Hi, I'm Brandon and this is what I've been doing lately.</h3>
       </section>
       <section class="fld-sm-row fld-col flg-5 vwc-p100">
-        {githubD.fold(
-          <Pending />,
-          <Pending />,
+        {refreshFoldR(
+          githubD,
+          constPending,
+          constPending,
           errors => (
             <Failure
               title="Error getting data from github.com"
@@ -42,9 +45,10 @@ export const Home: FunctionalComponent<HomeProps> = () => {
             <Github github={github} />
           )
         )}
-        {articlesD.fold(
-          <Pending />,
-          <Pending />,
+        {refreshFoldR(
+          articlesD,
+          constPending,
+          constPending,
           errors => (
             <Failure
               title="Error getting articles from dev.to"

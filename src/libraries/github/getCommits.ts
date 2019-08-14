@@ -1,5 +1,5 @@
-import { AsyncData, fromEither } from '@nll/dux';
-import { of, Task } from 'fp-ts/lib/Task';
+import { DatumEither, fromEither } from '@nll/datum/es6/DatumEither';
+import { Task } from 'fp-ts/es6/Task';
 import * as t from 'io-ts';
 import { DateFromISOString } from 'io-ts-types/lib/DateFromISOString';
 
@@ -53,7 +53,7 @@ export const Github = t.type({
 });
 export type Github = t.TypeOf<typeof Github>;
 
-export type GithubAD = AsyncData<t.Errors, Github>;
+export type GithubAD = DatumEither<t.Errors, Github>;
 
 export const getGithub: Task<GithubAD> = () =>
   fetch(url, {

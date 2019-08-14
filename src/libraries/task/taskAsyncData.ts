@@ -1,22 +1,16 @@
-import { AsyncData, failure, initial, pending, success } from '@nll/dux';
-import { Task } from 'fp-ts/lib/Task';
+import { initial } from '@nll/datum/es6/Datum';
+import { DatumEither, failure, toRefresh } from '@nll/datum/es6/DatumEither';
+import { Task } from 'fp-ts/es6/Task';
 import { Errors } from 'io-ts';
 import { useEffect, useState } from 'preact/hooks';
 
-export const useTaskData = <T>(task: Task<AsyncData<Errors, T>>) => {
-  const [state, setState] = useState(initial<Errors, T>());
+export const useTaskData = <T>(task: Task<DatumEither<Errors, T>>) => {
+  const [state, setState] = useState<DatumEither<Errors, T>>(initial);
   useEffect(() => {
     // Setup "cancellation closure"
     let linked = true;
     // Initialze state
-    setState(
-      state.fold(
-        pending(),
-        state,
-        error => failure(error, true),
-        data => success(data, true)
-      )
-    );
+    setState(toRefresh(state));
     task()
       .then(d => {
         if (linked) {

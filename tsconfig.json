@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
     "target": "es5",
     "module": "commonjs",
     "jsx": "react",
     "jsxFactory": "h",
     "sourceMap": true,
-    "strict": true,
     "baseUrl": "./",
     "paths": {
       "~/*": ["src/*"]
