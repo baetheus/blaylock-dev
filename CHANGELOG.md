@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.1](https://github.com/baetheus/blaylock-dev/compare/v2.3.0...v2.3.1) (2019-08-21)
+
+
+### Bug Fixes
+
+* added font variables to html tag ([bb0e84e](https://github.com/baetheus/blaylock-dev/commit/bb0e84e))
+
 ## [2.3.0](https://github.com/baetheus/blaylock-dev/compare/v2.2.1...v2.3.0) (2019-08-21)
 
 
