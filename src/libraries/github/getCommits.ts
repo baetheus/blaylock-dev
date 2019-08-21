@@ -3,7 +3,7 @@ import { Task } from 'fp-ts/es6/Task';
 import * as t from 'io-ts';
 import { DateFromISOString } from 'io-ts-types/lib/DateFromISOString';
 
-const getGithubQuery = `{ viewer { gists(last:5) { nodes { name description updatedAt } } repositories(last:7) { nodes { nameWithOwner description url updatedAt } } } organization(login: "nullpub") { repositories(last: 7) { nodes { nameWithOwner description url updatedAt } } }}`;
+const getGithubQuery = `{ viewer { gists(last:5) { nodes { name description updatedAt files { name } stargazers { totalCount } } } repositories(last:7) { nodes { nameWithOwner description url updatedAt } } } organization(login: "nullpub") { repositories(last: 7) { nodes { nameWithOwner description url updatedAt } } }}`;
 
 const headers = {
   Authorization: `Bearer ${process.env.GITHUB_API_TOKEN}`,
@@ -27,6 +27,14 @@ export const Gist = t.intersection([
   t.type({
     name: t.string,
     updatedAt: DateFromISOString,
+    stargazers: t.type({
+      totalCount: t.number,
+    }),
+    files: t.array(
+      t.type({
+        name: t.string,
+      })
+    ),
   }),
   t.partial({
     description: t.string,

@@ -1,4 +1,4 @@
-import { FunctionalComponent, h } from 'preact';
+import { Component, FunctionalComponent, h } from 'preact';
 import { Gist } from '~/libraries/github';
 
 export interface GistsProps {
@@ -13,13 +13,13 @@ export interface GistsProps {
  */
 export const Gists: FunctionalComponent<GistsProps> = ({ gists = [] }) => {
   return (
-    <ul className="fld-col flg-4">
+    <ul class="fld-col flg-4">
       {gists.length === 0 && <div>No Gistsitories!</div>}
       {gists
         .sort((a: any, b: any) => b.updatedAt - a.updatedAt)
         .map(g => (
-          <li className="fld-col flg-3" key={g.name}>
-            <div className="fsu-2">
+          <li class="fld-col" key={g.name}>
+            <div class="fs-u1">
               <a
                 href={`https://gist.github.com/baetheus/${g.name}`}
                 target="_blank"
@@ -28,8 +28,17 @@ export const Gists: FunctionalComponent<GistsProps> = ({ gists = [] }) => {
                 {g.description || 'No Description'}
               </a>
             </div>
-            <div className="fsd-1">
+            <div class="fs-d2 cf-a1">
               <em>{g.updatedAt.toLocaleString()}</em>
+            </div>
+            <div>
+              <em>
+                {g.stargazers.totalCount > 1
+                  ? `${g.stargazers.totalCount} stargazers`
+                  : g.stargazers.totalCount === 1
+                  ? `1 stargazer`
+                  : 'No stargazers :('}
+              </em>
             </div>
           </li>
         ))}

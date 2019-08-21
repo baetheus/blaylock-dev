@@ -15,13 +15,13 @@ export const Articles: FunctionalComponent<ArticlesProps> = ({
   articles = [],
 }) => {
   return (
-    <ul className="fld-col flg-4">
+    <ul class="fld-col flg-4">
       {articles.length === 0 && <div>No Blog Articles!</div>}
       {articles
         .sort((a: any, b: any) => b.publishedAt - a.publishedAt)
         .map(a => (
-          <li className="fld-col flg-3" key={a.id}>
-            <div className="fsu-2">
+          <li class="fld-col" key={a.id}>
+            <div class="fs-u1">
               <a
                 href={a.canonical_url}
                 target="_blank"
@@ -30,7 +30,7 @@ export const Articles: FunctionalComponent<ArticlesProps> = ({
                 {a.title}
               </a>
             </div>
-            <div className="fsd-1">
+            <div class="fs-d2 cf-a1">
               <em>{a.published_at.toLocaleString()}</em>
             </div>
             <p>{a.description || 'No Description'}</p>
