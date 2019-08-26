@@ -8,10 +8,7 @@
       sizes="196x196"
       href="./assets/favicon-196x196.png?v=1.0"
     />
-    <link
-      href="https://fonts.googleapis.com/css?family=Proza+Libre&display=swap"
-      rel="stylesheet"
-    />
+
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="description" content="The personal site of brandon blaylock." />
     <meta name="theme-color" content="#ffffff" />
@@ -20,4 +17,20 @@
     <script src="./index.tsx"></script>
     <noscript>You need to enable JavaScript to run this app.</noscript>
   </body>
+  <footer>
+    <!-- Asynchronously load font -->
+    <script type="text/javascript">
+      WebFontConfig = {
+        google: { families: ['Proza+Libre'] },
+      };
+      (function() {
+        var wf = document.createElement('script');
+        wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+      })();
+    </script>
+  </footer>
 </html>
