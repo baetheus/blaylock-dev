@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.5](https://github.com/baetheus/blaylock-dev/compare/v2.3.4...v2.3.5) (2019-08-26)
+
+
+### Bug Fixes
+
+* changed link color theme to a higher contrast pair ([e8ce9ac](https://github.com/baetheus/blaylock-dev/commit/e8ce9ac))
+
 ### [2.3.4](https://github.com/baetheus/blaylock-dev/compare/v2.3.3...v2.3.4) (2019-08-26)
 
 
