@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.6](https://github.com/baetheus/blaylock-dev/compare/v2.3.5...v2.3.6) (2019-08-26)
+
+
+### Bug Fixes
+
+* more webfont loader playing around and preconnect links ([95c3b87](https://github.com/baetheus/blaylock-dev/commit/95c3b87))
+
 ### [2.3.5](https://github.com/baetheus/blaylock-dev/compare/v2.3.4...v2.3.5) (2019-08-26)
 
 
