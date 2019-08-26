@@ -1,6 +1,6 @@
-import { DatumEither, fromEither } from '@nll/datum/es6/DatumEither';
-import { isLeft } from 'fp-ts/es6/Either';
-import { Task } from 'fp-ts/es6/Task';
+import { DatumEither, fromEither } from '@nll/datum/lib/DatumEither';
+import { isLeft } from 'fp-ts/lib/Either';
+import { Task } from 'fp-ts/lib/Task';
 import * as t from 'io-ts';
 import { reporter } from 'io-ts-reporters';
 import { DateFromISOString } from 'io-ts-types/lib/DateFromISOString';
@@ -62,4 +62,4 @@ export const getArticlesTask = (
       }
       return e;
     })
-    .then(fromEither);
+    .then(t => fromEither(() => t));

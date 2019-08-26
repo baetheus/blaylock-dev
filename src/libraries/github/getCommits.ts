@@ -1,5 +1,5 @@
-import { DatumEither, fromEither } from '@nll/datum/es6/DatumEither';
-import { Task } from 'fp-ts/es6/Task';
+import { DatumEither, fromEither } from '@nll/datum/lib/DatumEither';
+import { Task } from 'fp-ts/lib/Task';
 import * as t from 'io-ts';
 import { DateFromISOString } from 'io-ts-types/lib/DateFromISOString';
 
@@ -71,4 +71,4 @@ export const getGithub: Task<GithubAD> = () =>
   })
     .then(res => res.json())
     .then(Github.decode)
-    .then(fromEither);
+    .then(t => fromEither(() => t));

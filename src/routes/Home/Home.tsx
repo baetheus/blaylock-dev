@@ -1,4 +1,4 @@
-import { refreshFoldR } from '@nll/datum/es6/DatumEither';
+import { refreshFold } from '@nll/datum/lib/DatumEither';
 import { FunctionalComponent, h } from 'preact';
 import { Failure, Pending } from '~/components/Async';
 import { Devto } from '~/components/Devto';
@@ -6,8 +6,8 @@ import { Footer } from '~/components/Footer';
 import { Github } from '~/components/Github';
 import { Header } from '~/components/Header';
 import { environment, version } from '~/environments';
-import { getArticlesTask } from '~/libraries/devto';
-import { getGithub } from '~/libraries/github';
+import { Article, getArticlesTask } from '~/libraries/devto';
+import { getGithub, Github as GithubT } from '~/libraries/github';
 import { useTaskData } from '~/libraries/task';
 
 export interface HomeProps {}
@@ -31,8 +31,7 @@ export const Home: FunctionalComponent<HomeProps> = () => {
         <h3>Hi, I'm Brandon and this is what I've been doing lately.</h3>
       </section>
       <section class="fld-sm-row fld-col flg-5 vwc-p100">
-        {refreshFoldR(
-          githubD,
+        {refreshFold(
           constPending,
           constPending,
           errors => (
@@ -41,12 +40,9 @@ export const Home: FunctionalComponent<HomeProps> = () => {
               error={errors}
             />
           ),
-          github => (
-            <Github github={github} />
-          )
-        )}
-        {refreshFoldR(
-          articlesD,
+          (github: GithubT) => <Github github={github} />
+        )(githubD)}
+        {refreshFold(
           constPending,
           constPending,
           errors => (
@@ -55,10 +51,8 @@ export const Home: FunctionalComponent<HomeProps> = () => {
               error={errors}
             />
           ),
-          articles => (
-            <Devto articles={articles} />
-          )
-        )}
+          (articles: Article[]) => <Devto articles={articles} />
+        )(articlesD)}
       </section>
       <Footer link={environment.versionUrl} version={version} />
     </main>
