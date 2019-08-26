@@ -18,3 +18,8 @@ h2,
 h3 {
   font-weight: var(--font-weight-u1);
 }
+
+:root {
+  --color-fore-link-0: #5e2ca5;
+  --color-back-link-0: #ffffff;
+}
