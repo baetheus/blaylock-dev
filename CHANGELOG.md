@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.3](https://github.com/baetheus/blaylock-dev/compare/v2.3.2...v2.3.3) (2019-08-26)
+
+
+### Bug Fixes
+
+* changed useTaskAsync to useTaskDatumEither ([6207215](https://github.com/baetheus/blaylock-dev/commit/6207215))
+* use google webfont loader to load fonts ([48098d1](https://github.com/baetheus/blaylock-dev/commit/48098d1))
+
 ### [2.3.2](https://github.com/baetheus/blaylock-dev/compare/v2.3.0...v2.3.2) (2019-08-26)
 
 
