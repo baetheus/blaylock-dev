@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.4](https://github.com/baetheus/blaylock-dev/compare/v2.3.3...v2.3.4) (2019-08-26)
+
+
+### Bug Fixes
+
+* added robots.txt and static file copy to parcel ([ae3d0b0](https://github.com/baetheus/blaylock-dev/commit/ae3d0b0))
+
 ### [2.3.3](https://github.com/baetheus/blaylock-dev/compare/v2.3.2...v2.3.3) (2019-08-26)
 
 
