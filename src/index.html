@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link rel="preconnect" href="https://api.github.com/" crossorigin />
+    <link rel="preconnect" href="https://dev.to/" crossorigin />
+
     <title>blaylock.dev</title>
     <link
       rel="icon"
@@ -19,18 +23,15 @@
   </body>
   <footer>
     <!-- Asynchronously load font -->
-    <script type="text/javascript">
-      WebFontConfig = {
-        google: { families: ['Proza+Libre'] },
-      };
-      (function() {
-        var wf = document.createElement('script');
-        wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-        wf.type = 'text/javascript';
-        wf.async = 'true';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(wf, s);
-      })();
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>
+      WebFont.load({
+        events: false,
+        classes: false,
+        google: {
+          families: ['Proza+Libre&display=swap'],
+        },
+      });
     </script>
   </footer>
 </html>
