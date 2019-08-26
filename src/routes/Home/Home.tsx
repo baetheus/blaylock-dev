@@ -8,7 +8,7 @@ import { Header } from '~/components/Header';
 import { environment, version } from '~/environments';
 import { Article, getArticlesTask } from '~/libraries/devto';
 import { getGithub, Github as GithubT } from '~/libraries/github';
-import { useTaskData } from '~/libraries/task';
+import { useTaskDatumEither } from '~/libraries/task';
 
 export interface HomeProps {}
 
@@ -21,8 +21,8 @@ const constPending = () => <Pending />;
  * <Home />
  */
 export const Home: FunctionalComponent<HomeProps> = () => {
-  const articlesD = useTaskData(getArticles);
-  const githubD = useTaskData(getGithub);
+  const articlesD = useTaskDatumEither(getArticles);
+  const githubD = useTaskDatumEither(getGithub);
 
   return (
     <main className="vw-p100 vhmn-vh100 fld-col flg-5 ai-ctr vwc-p100 vwcmx-rem0 pwa-5">
