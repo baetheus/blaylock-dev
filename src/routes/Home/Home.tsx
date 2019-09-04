@@ -1,18 +1,19 @@
 import { refreshFold } from '@nll/datum/lib/DatumEither';
 import { FunctionalComponent, h } from 'preact';
+import { useEffect } from 'preact/hooks';
 import { Failure, Pending } from '~/components/Async';
 import { Devto } from '~/components/Devto';
 import { Footer } from '~/components/Footer';
 import { Github } from '~/components/Github';
 import { Header } from '~/components/Header';
 import { environment, version } from '~/environments';
-import { Article, getArticlesTask } from '~/libraries/devto';
-import { getGithub, Github as GithubT } from '~/libraries/github';
-import { useTaskDatumEither } from '~/libraries/task';
+import { articlesDataL, githubDataL, useRedux } from '~/store';
+import { Articles, getArticles } from '~/store/devto';
+import { getGithub } from '~/store/github';
+import { GithubData } from '~/store/github/validators';
 
 export interface HomeProps {}
 
-const getArticles = getArticlesTask('baetheus');
 const constPending = () => <Pending />;
 
 /**
@@ -21,8 +22,13 @@ const constPending = () => <Pending />;
  * <Home />
  */
 export const Home: FunctionalComponent<HomeProps> = () => {
-  const articlesD = useTaskDatumEither(getArticles);
-  const githubD = useTaskDatumEither(getGithub);
+  const [githubData, dispatch] = useRedux(githubDataL.get);
+  const [articlesData] = useRedux(articlesDataL.get);
+
+  useEffect(() => {
+    dispatch(getArticles.pending('baetheus'));
+    dispatch(getGithub.pending());
+  }, []);
 
   return (
     <main className="vw-p100 vhmn-vh100 fld-col flg-5 ai-ctr vwc-p100 vwcmx-rem0 pwa-5">
@@ -38,10 +44,14 @@ export const Home: FunctionalComponent<HomeProps> = () => {
             <Failure
               title="Error getting data from github.com"
               error={errors}
+              showError={true}
             />
           ),
-          (github: GithubT) => <Github github={github} />
-        )(githubD)}
+          (github: GithubData) => {
+            console.log('got github', github);
+            return <Github github={github} />;
+          }
+        )(githubData)}
         {refreshFold(
           constPending,
           constPending,
@@ -49,10 +59,11 @@ export const Home: FunctionalComponent<HomeProps> = () => {
             <Failure
               title="Error getting articles from dev.to"
               error={errors}
+              showError={true}
             />
           ),
-          (articles: Article[]) => <Devto articles={articles} />
-        )(articlesD)}
+          (articles: Articles) => <Devto articles={articles} />
+        )(articlesData)}
       </section>
       <Footer link={environment.versionUrl} version={version} />
     </main>

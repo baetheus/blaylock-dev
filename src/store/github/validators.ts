@@ -1,15 +1,5 @@
-import { DatumEither, fromEither } from '@nll/datum/lib/DatumEither';
-import { Task } from 'fp-ts/lib/Task';
 import * as t from 'io-ts';
 import { DateFromISOString } from 'io-ts-types/lib/DateFromISOString';
-
-const getGithubQuery = `{ viewer { gists(last:5) { nodes { name description updatedAt files { name } stargazers { totalCount } } } repositories(last:7) { nodes { nameWithOwner description url updatedAt } } } organization(login: "nullpub") { repositories(last: 7) { nodes { nameWithOwner description url updatedAt } } }}`;
-
-const headers = {
-  Authorization: `Bearer ${process.env.GITHUB_API_TOKEN}`,
-};
-
-const url = 'https://api.github.com/graphql';
 
 export const Repository = t.intersection([
   t.type({
@@ -42,7 +32,7 @@ export const Gist = t.intersection([
 ]);
 export type Gist = t.TypeOf<typeof Gist>;
 
-export const Github = t.type({
+export const GithubData = t.type({
   data: t.type({
     viewer: t.type({
       gists: t.type({
@@ -59,16 +49,4 @@ export const Github = t.type({
     }),
   }),
 });
-export type Github = t.TypeOf<typeof Github>;
-
-export type GithubAD = DatumEither<t.Errors, Github>;
-
-export const getGithub: Task<GithubAD> = () =>
-  fetch(url, {
-    method: 'POST',
-    body: JSON.stringify({ query: getGithubQuery }),
-    headers,
-  })
-    .then(res => res.json())
-    .then(Github.decode)
-    .then(t => fromEither(() => t));
+export type GithubData = t.TypeOf<typeof GithubData>;

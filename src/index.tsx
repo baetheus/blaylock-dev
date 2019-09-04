@@ -1,4 +1,4 @@
-import './index.css';
+import '~/store/store';
 
 import { h, render } from 'preact';
 import { Router } from 'preact-router';

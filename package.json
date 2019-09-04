@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "start": "npx parcel src/index.html",
-    "build": "npx parcel build src/index.html",
+    "build": "npx parcel build src/index.html --experimental-scope-hoisting",
     "release": "npx standard-version",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,16 +15,23 @@
   "dependencies": {
     "@nll/css": "^8.4.0",
     "@nll/datum": "^2.5.1",
+    "@nll/dux": "^7.1.0",
     "fp-ts": "^2.0.5",
     "io-ts": "^2.0.1",
     "io-ts-reporters": "^1.0.0",
     "io-ts-types": "^0.5.0",
+    "monocle-ts": "^2.0.0",
     "preact": "10.0.0-rc.1",
-    "preact-router": "^3.0.1"
+    "preact-router": "^3.0.1",
+    "redux": "^4.0.4",
+    "redux-observable": "^1.1.0",
+    "rxjs": "^6.5.3"
   },
   "devDependencies": {
     "@types/node": "^12.7.1",
+    "@types/redux": "^3.6.0",
     "parcel-bundler": "^1.12.3",
+    "parcel-plugin-bundle-visualiser": "^1.2.0",
     "parcel-plugin-static-files-copy": "^2.2.1",
     "standard-version": "^7.0.0",
     "typescript": "^3.5.3"

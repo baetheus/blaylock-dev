@@ -1,8 +1,4 @@
-import { DatumEither, fromEither } from '@nll/datum/lib/DatumEither';
-import { isLeft } from 'fp-ts/lib/Either';
-import { Task } from 'fp-ts/lib/Task';
 import * as t from 'io-ts';
-import { reporter } from 'io-ts-reporters';
 import { DateFromISOString } from 'io-ts-types/lib/DateFromISOString';
 
 export const User = t.intersection([
@@ -45,21 +41,3 @@ export type Article = t.TypeOf<typeof Article>;
 
 export const Articles = t.array(Article);
 export type Articles = t.TypeOf<typeof Articles>;
-
-export type ArticlesAD = DatumEither<t.Errors, Articles>;
-
-export const getArticlesTask = (
-  username: string,
-  devtoUrl = 'https://dev.to/api/'
-): Task<ArticlesAD> => () =>
-  fetch(`${devtoUrl}/articles?username=${username}`)
-    .then(res => res.json())
-    .then(Articles.decode)
-    .then(e => {
-      if (isLeft(e)) {
-        console.log('Validation Error during ');
-        console.log(reporter(e).join('\n\n'));
-      }
-      return e;
-    })
-    .then(t => fromEither(() => t));
