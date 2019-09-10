@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.1](https://github.com/baetheus/blaylock-dev/compare/v2.4.0...v2.4.1) (2019-09-10)
+
+
+### Bug Fixes
+
+* removed action logger from app (until we enable toggle) ([e29e58d](https://github.com/baetheus/blaylock-dev/commit/e29e58d))
+
 ## [2.4.0](https://github.com/baetheus/blaylock-dev/compare/v2.3.6...v2.4.0) (2019-09-10)
 
 
