@@ -47,10 +47,7 @@ export const Home: FunctionalComponent<HomeProps> = () => {
               showError={true}
             />
           ),
-          (github: GithubData) => {
-            console.log('got github', github);
-            return <Github github={github} />;
-          }
+          (github: GithubData) => <Github github={github} />
         )(githubData)}
         {refreshFold(
           constPending,

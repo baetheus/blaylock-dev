@@ -1,7 +1,7 @@
 import { createContext } from 'preact';
 import { applyMiddleware, combineReducers, createStore, Store } from 'redux';
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
-import { logger, useReduxFactory } from '~/libraries/redux';
+import { useReduxFactory } from '~/libraries/redux';
 
 import { getArticlesEpic, getArticlesReducer } from './devto';
 import { getGithubEpic, getGithubReducer } from './github';
@@ -15,7 +15,7 @@ const storeFactory = () => {
   });
   const epics = combineEpics(getGithubEpic, getArticlesEpic);
   const epicMiddleware = createEpicMiddleware();
-  const store = createStore(reducers, applyMiddleware(logger, epicMiddleware));
+  const store = createStore(reducers, applyMiddleware(epicMiddleware));
 
   epicMiddleware.run(epics);
 
