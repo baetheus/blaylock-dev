@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0](https://github.com/baetheus/blaylock-dev/compare/v2.3.6...v2.4.0) (2019-09-10)
+
+
+### Features
+
+* migrate to redux instead of tasks for @nll/dux examples ([541d297](https://github.com/baetheus/blaylock-dev/commit/541d297))
+
 ### [2.3.6](https://github.com/baetheus/blaylock-dev/compare/v2.3.5...v2.3.6) (2019-08-26)
 
 
