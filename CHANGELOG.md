@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.5](https://github.com/baetheus/blaylock-dev/compare/v2.4.4...v2.4.5) (2019-09-10)
+
+
+### Bug Fixes
+
+* more travis fixes ([d97661b](https://github.com/baetheus/blaylock-dev/commit/d97661b))
+
 ### [2.4.4](https://github.com/baetheus/blaylock-dev/compare/v2.4.3...v2.4.4) (2019-09-10)
 
 
