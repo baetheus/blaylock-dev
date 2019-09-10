@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "nll-sh"
+  },
+  "targets": {
+    "nll-sh": {
+      "hosting": {
+        "blaylock-dev": [
+          "blaylock-dev"
+        ]
+      }
+    }
+  }
+}
