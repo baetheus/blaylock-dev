@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.0](https://github.com/baetheus/blaylock-dev/compare/v2.4.8...v2.5.0) (2019-09-11)
+
+
+### Features
+
+* only call github/devto apis if no data exists. ([d84aa28](https://github.com/baetheus/blaylock-dev/commit/d84aa28))
+
 ### [2.4.8](https://github.com/baetheus/blaylock-dev/compare/v2.4.7...v2.4.8) (2019-09-10)
 
 ### [2.4.7](https://github.com/baetheus/blaylock-dev/compare/v2.4.6...v2.4.7) (2019-09-10)
