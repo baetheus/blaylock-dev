@@ -1,3 +1,4 @@
+import { isInitial } from '@nll/datum/lib/Datum';
 import { refreshFold } from '@nll/datum/lib/DatumEither';
 import { FunctionalComponent, h } from 'preact';
 import { useEffect } from 'preact/hooks';
@@ -26,9 +27,11 @@ export const Home: FunctionalComponent<HomeProps> = () => {
   const [articlesData] = useRedux(articlesDataL.get);
 
   useEffect(() => {
-    dispatch(getArticles.pending('baetheus'));
-    dispatch(getGithub.pending());
-  }, []);
+    if (isInitial(githubData) || isInitial(articlesData)) {
+      dispatch(getArticles.pending('baetheus'));
+      dispatch(getGithub.pending());
+    }
+  }, [githubData, articlesData]);
 
   return (
     <main className="vw-p100 vhmn-vh100 fld-col flg-5 ai-ctr vwc-p100 vwcmx-rem0 pwa-5">
