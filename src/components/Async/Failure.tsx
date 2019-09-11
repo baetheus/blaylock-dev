@@ -18,9 +18,9 @@ export const Failure: FunctionalComponent<FailureProps> = ({
   showError = false,
 }) => {
   return (
-    <section className="ct-i0 pwa-4 fld-row flai-center fljc-center">
+    <section className="fld-col flg-4 ai-ctr pwa-4 ct-i0">
       <h3>{title}</h3>
-      {showError && <pre>{JSON.stringify(error, null, 2)}</pre>}
+      {showError && <div class="ova-au">{JSON.stringify(error, null, 2)}</div>}
     </section>
   );
 };

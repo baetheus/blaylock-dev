@@ -1,0 +1,15 @@
+{
+  "name": "blaylock.dev",
+  "short_name": "blaylock-dev",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "./assets/favicon-196x196.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

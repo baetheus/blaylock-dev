@@ -47,7 +47,6 @@ export const Home: FunctionalComponent<HomeProps> = () => {
             <Failure
               title="Error getting data from github.com"
               error={errors}
-              showError={true}
             />
           ),
           (github: GithubData) => <Github github={github} />
@@ -59,7 +58,6 @@ export const Home: FunctionalComponent<HomeProps> = () => {
             <Failure
               title="Error getting articles from dev.to"
               error={errors}
-              showError={true}
             />
           ),
           (articles: Articles) => <Devto articles={articles} />
