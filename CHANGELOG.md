@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.6.0](https://github.com/baetheus/blaylock-dev/compare/v2.5.0...v2.6.0) (2019-09-11)
+
+
+### Features
+
+* added initial pwa support ([0dd8093](https://github.com/baetheus/blaylock-dev/commit/0dd8093))
+
 ## [2.5.0](https://github.com/baetheus/blaylock-dev/compare/v2.4.8...v2.5.0) (2019-09-11)
 
 
