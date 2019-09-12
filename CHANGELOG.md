@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.7.1](https://github.com/baetheus/blaylock-dev/compare/v2.7.0...v2.7.1) (2019-09-12)
+
+
+### Bug Fixes
+
+* set view height of pending component ([91405fa](https://github.com/baetheus/blaylock-dev/commit/91405fa))
+
 ## [2.7.0](https://github.com/baetheus/blaylock-dev/compare/v2.6.1...v2.7.0) (2019-09-12)
 
 
