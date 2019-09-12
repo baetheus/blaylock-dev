@@ -1,5 +1,5 @@
 @import '../node_modules/@nll/css/dist/reset/reset.min.css';
-@import '../node_modules/@nll/css/dist/minimal/minimal.min.css';
+@import '../node_modules/@nll/css/dist/standard/standard.min.css';
 
 html {
   font-family: 'Proza Libre', sans-serif;

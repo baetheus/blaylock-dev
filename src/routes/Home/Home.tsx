@@ -34,10 +34,15 @@ export const Home: FunctionalComponent<HomeProps> = () => {
   }, [githubData, articlesData]);
 
   return (
-    <main className="vw-p100 vhmn-vh100 fld-col flg-5 ai-ctr vwc-p100 vwcmx-rem0 pwa-5">
+    <main className="vw-p100 vhmn-vh100 fld-col flg-5 ai-ctr vwc-p100 vwcmx-rem0 pwa-5 ovx-hi">
       <Header />
       <section>
-        <h3>Hi, I'm Brandon and this is what I've been doing lately.</h3>
+        <h3 class="mwxr-7 pwx-7 pwy-5 ct-b1">
+          Hi, I'm Brandon Blaylock. I work as a front end engineer on web and
+          native applications, but I also write non-ui stuff from time to time.
+          Following are the most recent open source projects or blog entries
+          that I've contributed to.
+        </h3>
       </section>
       <section class="fld-sm-row fld-col flg-5 vwc-p100">
         {refreshFold(
