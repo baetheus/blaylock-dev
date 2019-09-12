@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.7.0](https://github.com/baetheus/blaylock-dev/compare/v2.6.1...v2.7.0) (2019-09-12)
+
+
+### Features
+
+* more exposition on main page, updated @nll/css dep ([09d547f](https://github.com/baetheus/blaylock-dev/commit/09d547f))
+
 ### [2.6.1](https://github.com/baetheus/blaylock-dev/compare/v2.6.0...v2.6.1) (2019-09-11)
 
 
