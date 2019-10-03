@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.8.1](https://github.com/baetheus/blaylock-dev/compare/v2.8.0...v2.8.1) (2019-10-03)
+
 ## [2.8.0](https://github.com/baetheus/blaylock-dev/compare/v2.7.3...v2.8.0) (2019-09-19)
 
 
