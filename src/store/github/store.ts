@@ -33,7 +33,7 @@ export const getGithubEpic: Epic = asyncExhaustMap(getGithub, () =>
     url: 'https://api.github.com/graphql',
     method: 'POST',
     body: JSON.stringify({
-      query: `{ viewer { gists(last:5) { nodes { name description updatedAt files { name } stargazers { totalCount } } } repositories(last:7) { nodes { nameWithOwner description url updatedAt } } } organization(login: "nullpub") { repositories(last: 7) { nodes { nameWithOwner description url updatedAt } } }}`,
+      query: `{ viewer { gists(last:10) { nodes { name description updatedAt files { name } stargazers { totalCount } } } repositories(last:10) { nodes { nameWithOwner description url updatedAt } } } organization(login: "nullpub") { repositories(last: 10) { nodes { nameWithOwner description url updatedAt } } }}`,
     }),
     headers: {
       Authorization: `Bearer ${process.env.GITHUB_API_TOKEN}`,

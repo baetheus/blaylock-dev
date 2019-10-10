@@ -1,8 +1,9 @@
 import { FunctionalComponent, h } from 'preact';
-import { Repository } from '~/libraries/github';
+import { Repository } from '~/store/github';
 
 export interface ReposProps {
   repos?: Repository[];
+  showCount?: number;
 }
 
 /**
@@ -11,12 +12,16 @@ export interface ReposProps {
  * @example
  * <Repos />
  */
-export const Repos: FunctionalComponent<ReposProps> = ({ repos = [] }) => {
+export const Repos: FunctionalComponent<ReposProps> = ({
+  repos = [],
+  showCount = 5,
+}) => {
   return (
     <ul class="fld-col flg-4">
       {repos.length === 0 && <div>No Repositories!</div>}
       {repos
         .sort((a: any, b: any) => b.updatedAt - a.updatedAt)
+        .slice(0, showCount)
         .map(r => (
           <li class="fld-col" key={r.nameWithOwner}>
             <div class="fs-u1">

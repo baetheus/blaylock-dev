@@ -1,11 +1,11 @@
 import { FunctionalComponent, h } from 'preact';
-import { Github as GithubT, Repository } from '~/libraries/github';
+import { GithubData, Repository } from '~/store/github';
 
 import { Gists } from './Gists';
 import { Repos } from './Repositories';
 
 export interface GithubProps {
-  github: GithubT;
+  github: GithubData;
 }
 
 /**

@@ -1,8 +1,9 @@
 import { FunctionalComponent, h } from 'preact';
-import { Articles as ArticlesT } from '~/libraries/devto';
+import { Articles as ArticlesT } from '~/store/devto';
 
 export interface ArticlesProps {
   articles?: ArticlesT;
+  showCount?: number;
 }
 
 /**
@@ -13,12 +14,14 @@ export interface ArticlesProps {
  */
 export const Articles: FunctionalComponent<ArticlesProps> = ({
   articles = [],
+  showCount = 5,
 }) => {
   return (
     <ul class="fld-col flg-4">
       {articles.length === 0 && <div>No Blog Articles!</div>}
       {articles
         .sort((a: any, b: any) => b.publishedAt - a.publishedAt)
+        .slice(0, showCount)
         .map(a => (
           <li class="fld-col" key={a.id}>
             <div class="fs-u1">

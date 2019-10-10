@@ -1,5 +1,5 @@
 import { FunctionalComponent, h } from 'preact';
-import { Article } from '~/libraries/devto';
+import { Article } from '~/store/devto';
 
 import { Articles } from './Articles';
 

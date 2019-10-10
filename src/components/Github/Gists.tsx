@@ -1,8 +1,9 @@
-import { Component, FunctionalComponent, h } from 'preact';
-import { Gist } from '~/libraries/github';
+import { FunctionalComponent, h } from 'preact';
+import { Gist } from '~/store/github';
 
 export interface GistsProps {
   gists?: Gist[];
+  showCount?: number;
 }
 
 /**
@@ -11,12 +12,16 @@ export interface GistsProps {
  * @example
  * <Gists />
  */
-export const Gists: FunctionalComponent<GistsProps> = ({ gists = [] }) => {
+export const Gists: FunctionalComponent<GistsProps> = ({
+  gists = [],
+  showCount = 5,
+}) => {
   return (
     <ul class="fld-col flg-4">
       {gists.length === 0 && <div>No Gistsitories!</div>}
       {gists
         .sort((a: any, b: any) => b.updatedAt - a.updatedAt)
+        .slice(0, showCount)
         .map(g => (
           <li class="fld-col" key={g.name}>
             <div class="fs-u1">
