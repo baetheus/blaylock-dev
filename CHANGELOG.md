@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.8.2](https://github.com/baetheus/blaylock-dev/compare/v2.8.1...v2.8.2) (2019-10-10)
+
+
+### Bug Fixes
+
+* fixed type imports for store ([b9ace95](https://github.com/baetheus/blaylock-dev/commit/b9ace9578c91c8b4013dc1f1e159ff3966740104))
+
 ### [2.8.1](https://github.com/baetheus/blaylock-dev/compare/v2.8.0...v2.8.1) (2019-10-03)
 
 ## [2.8.0](https://github.com/baetheus/blaylock-dev/compare/v2.7.3...v2.8.0) (2019-09-19)
