@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.9.0](https://github.com/baetheus/blaylock-dev/compare/v2.8.2...v2.9.0) (2019-10-16)
+
+
+### Features
+
+* remove inlining ([cf39ca1](https://github.com/baetheus/blaylock-dev/commit/cf39ca182a0b3eb320067dfc948390af1ba7ae1e))
+
 ### [2.8.2](https://github.com/baetheus/blaylock-dev/compare/v2.8.1...v2.8.2) (2019-10-10)
 
 
