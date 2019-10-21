@@ -27,7 +27,7 @@ export const Github: FunctionalComponent<GithubProps> = ({ github }) => {
   );
 
   return (
-    <section className="fld-col flg-4">
+    <section className="fld-col flg-5">
       <h2>
         github/
         <a
