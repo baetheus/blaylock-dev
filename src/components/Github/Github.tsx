@@ -1,4 +1,4 @@
-import { FunctionalComponent, h } from 'preact';
+import { Fragment, FunctionalComponent, h } from 'preact';
 import { GithubData, Repository } from '~/store/github';
 
 import { Gists } from './Gists';
@@ -27,29 +27,33 @@ export const Github: FunctionalComponent<GithubProps> = ({ github }) => {
   );
 
   return (
-    <section className="fld-col flg-5">
-      <h2>
-        github/
-        <a
-          href="https://github.com/baetheus"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          baetheus
-        </a>
-      </h2>
-      <Repos repos={repos} />
-      <h2>
-        gist/
-        <a
-          href="https://gist.github.com/baetheus"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          baetheus
-        </a>
-      </h2>
-      <Gists gists={gists} />
-    </section>
+    <Fragment>
+      <section className="fld-col flg-4">
+        <h2>
+          github/
+          <a
+            href="https://github.com/baetheus"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            baetheus
+          </a>
+        </h2>
+        <Repos repos={repos} />
+      </section>
+      <section className="fld-col flg-4">
+        <h2>
+          gist/
+          <a
+            href="https://gist.github.com/baetheus"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            baetheus
+          </a>
+        </h2>
+        <Gists gists={gists} />
+      </section>
+    </Fragment>
   );
 };
