@@ -2,47 +2,72 @@ import { DatumEither, initial } from '@nll/datum/lib/DatumEither';
 import { asyncActionCreators } from '@nll/dux/lib/Actions';
 import { asyncExhaustMap } from '@nll/dux/lib/AsyncMap';
 import { asyncReducerFactory, reducerDefaultFn } from '@nll/dux/lib/Reducers';
-import { isLeft } from 'fp-ts/lib/Either';
 import { Lens } from 'monocle-ts';
 import { Epic } from 'redux-observable';
-import { of, throwError } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
-import { filter, map, mergeMap } from 'rxjs/operators';
+import { mapDecode } from 'src/libraries/io-ts';
+import { mapAjaxJson } from 'src/libraries/rxjs';
 
-import { GithubData } from './validators';
+import * as queries from './queries';
+import { GistData, RepoData } from './validators';
 
 export interface GithubStore {
-  github: DatumEither<Error, GithubData>;
+  repos: DatumEither<Error, RepoData>;
+  gists: DatumEither<Error, GistData>;
 }
 
 export const INIT_GITHUB_STORE: GithubStore = {
-  github: initial,
+  repos: initial,
+  gists: initial,
 };
-export const githubL = Lens.fromProp<GithubStore>()('github');
+export const reposL = Lens.fromProp<GithubStore>()('repos');
+export const gistsL = Lens.fromProp<GithubStore>()('gists');
 
-export const getGithub = asyncActionCreators<void, GithubData, Error>(
-  'GET_GITHUB'
+/**
+ * Github Repos Store Controls
+ */
+export const getRepos = asyncActionCreators<void, RepoData, Error>(
+  'GET_GITHUB_REPOS'
 );
-export const getGithubReducer = reducerDefaultFn(
+export const getReposReducer = reducerDefaultFn(
   INIT_GITHUB_STORE,
-  asyncReducerFactory(getGithub, githubL)
+  asyncReducerFactory(getRepos, reposL)
 );
-
-export const getGithubEpic: Epic = asyncExhaustMap(getGithub, () =>
+export const getReposEpic: Epic = asyncExhaustMap(getRepos, () =>
   ajax({
     url: 'https://api.github.com/graphql',
     method: 'POST',
     body: JSON.stringify({
-      query: `{ viewer { gists(last:10) { nodes { name description updatedAt files { name } stargazers { totalCount } } } repositories(last:10) { nodes { nameWithOwner description url updatedAt } } } organization(login: "nullpub") { repositories(last: 10) { nodes { nameWithOwner description url updatedAt } } }}`,
+      query: queries.repos(),
     }),
     headers: {
       Authorization: `Bearer ${process.env.GITHUB_API_TOKEN}`,
     },
   }).pipe(
-    filter(r => r.responseType === 'json'),
-    map(r => GithubData.decode(r.response)),
-    mergeMap(e =>
-      isLeft(e) ? throwError(new Error(JSON.stringify(e))) : of(e.right)
-    )
+    mapAjaxJson,
+    mapDecode(RepoData)
+  )
+);
+
+export const getGists = asyncActionCreators<void, GistData, Error>(
+  'GET_GITHUB_GISTS'
+);
+export const getGistsReducer = reducerDefaultFn(
+  INIT_GITHUB_STORE,
+  asyncReducerFactory(getGists, gistsL)
+);
+export const getGistsEpic: Epic = asyncExhaustMap(getGists, () =>
+  ajax({
+    url: 'https://api.github.com/graphql',
+    method: 'POST',
+    body: JSON.stringify({
+      query: queries.gists(),
+    }),
+    headers: {
+      Authorization: `Bearer ${process.env.GITHUB_API_TOKEN}`,
+    },
+  }).pipe(
+    mapAjaxJson,
+    mapDecode(GistData)
   )
 );

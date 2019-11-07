@@ -32,21 +32,24 @@ export const Gist = t.intersection([
 ]);
 export type Gist = t.TypeOf<typeof Gist>;
 
-export const GithubData = t.type({
+export const GistData = t.type({
   data: t.type({
     viewer: t.type({
       gists: t.type({
         nodes: t.array(Gist),
       }),
-      repositories: t.type({
-        nodes: t.array(Repository),
-      }),
     }),
-    organization: t.type({
+  }),
+});
+export type GistData = t.TypeOf<typeof GistData>;
+
+export const RepoData = t.type({
+  data: t.type({
+    viewer: t.type({
       repositories: t.type({
         nodes: t.array(Repository),
       }),
     }),
   }),
 });
-export type GithubData = t.TypeOf<typeof GithubData>;
+export type RepoData = t.TypeOf<typeof RepoData>;
