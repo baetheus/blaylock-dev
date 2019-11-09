@@ -5,6 +5,6 @@ export const environment: Environment = {
   useMocks: true,
   showLogs: true,
   refreshInterval: 5 * 1000,
-  versionUrl: 'https://gitlab.com/baetheus/blaylock-dev/-/tags/v',
+  versionUrl: 'https://gitlab.com/baetheus/blaylock-dev/-/tags/',
   version: process.env.CI_COMMIT_TAG || 'Unknown',
 };
