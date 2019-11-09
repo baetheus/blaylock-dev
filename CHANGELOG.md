@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.10.2](https://github.com/baetheus/blaylock-dev/compare/v2.10.1...v2.10.2) (2019-11-09)
+
+
+### Bug Fixes
+
+* remove echo command from deploy job ([99c7b92](https://github.com/baetheus/blaylock-dev/commit/99c7b92307ee90d319488e8bfafcc765f36933aa))
+
 ### [2.10.1](https://github.com/baetheus/blaylock-dev/compare/v2.10.0...v2.10.1) (2019-11-09)
 
 
