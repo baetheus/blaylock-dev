@@ -6,4 +6,5 @@ export const environment: Environment = {
   showLogs: false,
   refreshInterval: 5 * 1000,
   versionUrl: 'https://github.com/baetheus/blaylock-dev/releases/tag/v',
+  version: process.env.CI_COMMIT_TAG || 'Unknown',
 };

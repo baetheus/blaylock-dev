@@ -1,4 +1,3 @@
-import { isInitial } from '@nll/datum/lib/Datum';
 import { refreshFold } from '@nll/datum/lib/DatumEither';
 import { FunctionalComponent, h } from 'preact';
 import { useEffect } from 'preact/hooks';
@@ -7,7 +6,7 @@ import { Articles } from '~/components/Devto';
 import { Footer } from '~/components/Footer';
 import { Gists, Repos } from '~/components/Github';
 import { Header } from '~/components/Header';
-import { environment, version } from '~/environments';
+import { environment } from '~/environments';
 import { articlesDataL, gistsDataL, reposDataL, useRedux } from '~/store';
 import { Articles as ArticlesData, getArticles } from '~/store/devto';
 import { getGists, getRepos, GistData, RepoData } from '~/store/github';
@@ -80,7 +79,7 @@ export const Home: FunctionalComponent<HomeProps> = () => {
           (articles: ArticlesData) => <Articles articles={articles} />
         )(articlesData)}
       </section>
-      <Footer link={environment.versionUrl} version={version} />
+      <Footer link={environment.versionUrl} version={environment.version} />
     </main>
   );
 };

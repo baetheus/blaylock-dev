@@ -4,4 +4,5 @@ export interface Environment {
   showLogs: boolean;
   refreshInterval: number;
   versionUrl: string;
+  version: string;
 }
