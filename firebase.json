@@ -3,7 +3,7 @@
     "public": "dist",
     "target": "blaylock-dev",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-    "predeploy": ["npm i --silent", "npm run build"],
+    "predeploy": ["npm ci", "npm run build"],
     "rewrites": [
       {
         "source": "**",
