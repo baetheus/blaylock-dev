@@ -1,1 +1,2 @@
-export * from './Github';
+export * from './Gists';
+export * from './Repositories';

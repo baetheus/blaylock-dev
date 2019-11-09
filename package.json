@@ -25,7 +25,8 @@
     "preact-router": "^3.0.1",
     "redux": "^4.0.4",
     "redux-observable": "^1.2.0",
-    "rxjs": "^6.5.3"
+    "rxjs": "^6.5.3",
+    "src": "^1.1.2"
   },
   "devDependencies": {
     "@types/node": "^12.7.1",

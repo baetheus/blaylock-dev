@@ -1,1 +1,1 @@
-export * from './Devto';
+export * from './Articles';

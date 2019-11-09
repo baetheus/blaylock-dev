@@ -1,8 +1,9 @@
 import { FunctionalComponent, h } from 'preact';
-import { Articles as ArticlesT } from '~/store/devto';
+import { List, ListHeader } from '~/components/List';
+import { Articles as ArticlesData } from '~/store/devto';
 
 export interface ArticlesProps {
-  articles?: ArticlesT;
+  articles?: ArticlesData;
   showCount?: number;
 }
 
@@ -17,7 +18,15 @@ export const Articles: FunctionalComponent<ArticlesProps> = ({
   showCount = 5,
 }) => {
   return (
-    <ul class="fld-col flg-4">
+    <List
+      title={
+        <ListHeader
+          prefix="articles"
+          link="https://dev.to/baetheus"
+          text="baetheus"
+        ></ListHeader>
+      }
+    >
       {articles.length === 0 && <div>No Blog Articles!</div>}
       {articles
         .sort((a: any, b: any) => b.publishedAt - a.publishedAt)
@@ -39,6 +48,6 @@ export const Articles: FunctionalComponent<ArticlesProps> = ({
             <p>{a.description || 'No Description'}</p>
           </li>
         ))}
-    </ul>
+    </List>
   );
 };

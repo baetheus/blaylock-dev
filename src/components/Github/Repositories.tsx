@@ -1,4 +1,5 @@
 import { FunctionalComponent, h } from 'preact';
+import { List, ListHeader } from '~/components/List';
 import { Repository } from '~/store/github';
 
 export interface ReposProps {
@@ -17,7 +18,15 @@ export const Repos: FunctionalComponent<ReposProps> = ({
   showCount = 5,
 }) => {
   return (
-    <ul class="fld-col flg-4">
+    <List
+      title={
+        <ListHeader
+          prefix="repos"
+          link="https://github.com/baetheus"
+          text="baetheus"
+        ></ListHeader>
+      }
+    >
       {repos.length === 0 && <div>No Repositories!</div>}
       {repos
         .sort((a: any, b: any) => b.updatedAt - a.updatedAt)
@@ -37,6 +46,6 @@ export const Repos: FunctionalComponent<ReposProps> = ({
             </div>
           </li>
         ))}
-    </ul>
+    </List>
   );
 };

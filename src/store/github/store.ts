@@ -5,33 +5,32 @@ import { asyncReducerFactory, reducerDefaultFn } from '@nll/dux/lib/Reducers';
 import { Lens } from 'monocle-ts';
 import { Epic } from 'redux-observable';
 import { ajax } from 'rxjs/ajax';
-import { mapDecode } from 'src/libraries/io-ts';
-import { mapAjaxJson } from 'src/libraries/rxjs';
+import { mapDecode } from '~/libraries/io-ts';
+import { mapAjaxJson } from '~/libraries/rxjs';
 
 import * as queries from './queries';
 import { GistData, RepoData } from './validators';
 
-export interface GithubStore {
-  repos: DatumEither<Error, RepoData>;
+interface GithubStore {
   gists: DatumEither<Error, GistData>;
+  repos: DatumEither<Error, RepoData>;
 }
 
-export const INIT_GITHUB_STORE: GithubStore = {
-  repos: initial,
+const INIT_GITHUB_STORE: GithubStore = {
   gists: initial,
+  repos: initial,
 };
-export const reposL = Lens.fromProp<GithubStore>()('repos');
-export const gistsL = Lens.fromProp<GithubStore>()('gists');
+
+const githubStoreL = Lens.fromProp<GithubStore>();
+
+export const reposL = githubStoreL('repos');
+export const gistsL = githubStoreL('gists');
 
 /**
  * Github Repos Store Controls
  */
 export const getRepos = asyncActionCreators<void, RepoData, Error>(
   'GET_GITHUB_REPOS'
-);
-export const getReposReducer = reducerDefaultFn(
-  INIT_GITHUB_STORE,
-  asyncReducerFactory(getRepos, reposL)
 );
 export const getReposEpic: Epic = asyncExhaustMap(getRepos, () =>
   ajax({
@@ -52,10 +51,6 @@ export const getReposEpic: Epic = asyncExhaustMap(getRepos, () =>
 export const getGists = asyncActionCreators<void, GistData, Error>(
   'GET_GITHUB_GISTS'
 );
-export const getGistsReducer = reducerDefaultFn(
-  INIT_GITHUB_STORE,
-  asyncReducerFactory(getGists, gistsL)
-);
 export const getGistsEpic: Epic = asyncExhaustMap(getGists, () =>
   ajax({
     url: 'https://api.github.com/graphql',
@@ -70,4 +65,10 @@ export const getGistsEpic: Epic = asyncExhaustMap(getGists, () =>
     mapAjaxJson,
     mapDecode(GistData)
   )
+);
+
+export const githubReducer = reducerDefaultFn(
+  INIT_GITHUB_STORE,
+  asyncReducerFactory(getGists, gistsL),
+  asyncReducerFactory(getRepos, reposL)
 );

@@ -1,4 +1,5 @@
 import { FunctionalComponent, h } from 'preact';
+import { List, ListHeader } from '~/components/List';
 import { Gist } from '~/store/github';
 
 export interface GistsProps {
@@ -17,7 +18,15 @@ export const Gists: FunctionalComponent<GistsProps> = ({
   showCount = 5,
 }) => {
   return (
-    <ul class="fld-col flg-4">
+    <List
+      title={
+        <ListHeader
+          prefix="gists"
+          link="https://gist.github.com/baetheus"
+          text="baetheus"
+        ></ListHeader>
+      }
+    >
       {gists.length === 0 && <div>No Gistsitories!</div>}
       {gists
         .sort((a: any, b: any) => b.updatedAt - a.updatedAt)
@@ -47,6 +56,6 @@ export const Gists: FunctionalComponent<GistsProps> = ({
             </div>
           </li>
         ))}
-    </ul>
+    </List>
   );
 };

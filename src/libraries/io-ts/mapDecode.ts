@@ -1,7 +1,7 @@
 import { Decoder } from 'io-ts';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { fromEither } from 'src/libraries/rxjs';
+import { fromEither } from '~/libraries/rxjs';
 
 /**
  * @name mapDecode

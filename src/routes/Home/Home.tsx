@@ -3,15 +3,14 @@ import { refreshFold } from '@nll/datum/lib/DatumEither';
 import { FunctionalComponent, h } from 'preact';
 import { useEffect } from 'preact/hooks';
 import { Failure, Pending } from '~/components/Async';
-import { Devto } from '~/components/Devto';
+import { Articles } from '~/components/Devto';
 import { Footer } from '~/components/Footer';
-import { Github } from '~/components/Github';
+import { Gists, Repos } from '~/components/Github';
 import { Header } from '~/components/Header';
 import { environment, version } from '~/environments';
-import { articlesDataL, githubDataL, useRedux } from '~/store';
-import { Articles, getArticles } from '~/store/devto';
-import { getGithub } from '~/store/github';
-import { GithubData } from '~/store/github/validators';
+import { articlesDataL, gistsDataL, reposDataL, useRedux } from '~/store';
+import { Articles as ArticlesData, getArticles } from '~/store/devto';
+import { getGists, getRepos, GistData, RepoData } from '~/store/github';
 
 export interface HomeProps {}
 
@@ -23,15 +22,15 @@ const constPending = () => <Pending />;
  * <Home />
  */
 export const Home: FunctionalComponent<HomeProps> = () => {
-  const [githubData, dispatch] = useRedux(githubDataL.get);
+  const [gistsData, dispatch] = useRedux(gistsDataL.get);
+  const [reposData] = useRedux(reposDataL.get);
   const [articlesData] = useRedux(articlesDataL.get);
 
   useEffect(() => {
-    if (isInitial(githubData) || isInitial(articlesData)) {
-      dispatch(getArticles.pending('baetheus'));
-      dispatch(getGithub.pending());
-    }
-  }, [githubData, articlesData]);
+    dispatch(getArticles.pending('baetheus'));
+    dispatch(getRepos.pending());
+    dispatch(getGists.pending());
+  }, []);
 
   return (
     <main className="vw-p100 vhmn-vh100 fld-col flg-5 ai-ctr vwc-p100 vwcmx-rem0 pwa-5 ovx-hi">
@@ -54,8 +53,21 @@ export const Home: FunctionalComponent<HomeProps> = () => {
               error={errors}
             />
           ),
-          (github: GithubData) => <Github github={github} />
-        )(githubData)}
+          (gists: GistData) => <Gists gists={gists.data.viewer.gists.nodes} />
+        )(gistsData)}
+        {refreshFold(
+          constPending,
+          constPending,
+          errors => (
+            <Failure
+              title="Error getting data from github.com"
+              error={errors}
+            />
+          ),
+          (repos: RepoData) => (
+            <Repos repos={repos.data.viewer.repositories.nodes} />
+          )
+        )(reposData)}
         {refreshFold(
           constPending,
           constPending,
@@ -65,7 +77,7 @@ export const Home: FunctionalComponent<HomeProps> = () => {
               error={errors}
             />
           ),
-          (articles: Articles) => <Devto articles={articles} />
+          (articles: ArticlesData) => <Articles articles={articles} />
         )(articlesData)}
       </section>
       <Footer link={environment.versionUrl} version={version} />
