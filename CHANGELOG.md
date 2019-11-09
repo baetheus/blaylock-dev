@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.10.0](https://github.com/baetheus/blaylock-dev/compare/v2.9.0...v2.10.0) (2019-11-09)
+
+
+### Features
+
+* migrate github api calls to individual calls ([befd957](https://github.com/baetheus/blaylock-dev/commit/befd957d736adf7e0806e0ad26f00f20864d6373))
+
+
+### Bug Fixes
+
+* fix github section flex gap ([018f890](https://github.com/baetheus/blaylock-dev/commit/018f890ff43628bb032383e7e03b43838ff5c521))
+* refactored github store to separate repo and gist calls ([464d5aa](https://github.com/baetheus/blaylock-dev/commit/464d5aae7a9ecee0d14d1e76898cb21509851d81))
+* use fragments for cleaner sections layout, fix spacing ([456c089](https://github.com/baetheus/blaylock-dev/commit/456c089c2cca26bb2aa4fd0fc22433361b0a84de))
+
 ## [2.9.0](https://github.com/baetheus/blaylock-dev/compare/v2.8.2...v2.9.0) (2019-10-16)
 
 
