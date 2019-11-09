@@ -13,20 +13,19 @@
   "author": "Brandon Blaylock <brandon@null.pub> (https://blaylock.dev)",
   "license": "MPL-2.0",
   "dependencies": {
-    "@nll/css": "^8.5.1",
+    "@nll/css": "^8.6.0",
     "@nll/datum": "^2.7.0",
     "@nll/dux": "^7.1.2",
-    "fp-ts": "^2.1.0",
+    "fp-ts": "^2.1.1",
     "io-ts": "^2.0.1",
     "io-ts-reporters": "^1.0.0",
-    "io-ts-types": "^0.5.1",
+    "io-ts-types": "^0.5.2",
     "monocle-ts": "^2.0.0",
-    "preact": "10.0.0",
-    "preact-router": "^3.0.1",
+    "preact": "10.0.4",
+    "preact-router": "^3.1.0",
     "redux": "^4.0.4",
     "redux-observable": "^1.2.0",
-    "rxjs": "^6.5.3",
-    "src": "^1.1.2"
+    "rxjs": "^6.5.3"
   },
   "devDependencies": {
     "@types/node": "^12.7.1",
@@ -35,7 +34,7 @@
     "parcel-plugin-bundle-visualiser": "^1.2.0",
     "parcel-plugin-static-files-copy": "^2.2.1",
     "standard-version": "^7.0.0",
-    "typescript": "^3.6.4"
+    "typescript": "^3.7.2"
   },
   "repository": {
     "type": "git",
