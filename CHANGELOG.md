@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.10.1](https://github.com/baetheus/blaylock-dev/compare/v2.10.0...v2.10.1) (2019-11-09)
+
+
+### Bug Fixes
+
+* switch build system from travis to gitlab-ci, change tagging ([508778a](https://github.com/baetheus/blaylock-dev/commit/508778aefdbe5fbee8287a2ca2fcac7f3c91612f))
+
 ## [2.10.0](https://github.com/baetheus/blaylock-dev/compare/v2.9.0...v2.10.0) (2019-11-09)
 
 
