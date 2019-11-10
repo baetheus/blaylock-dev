@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.10.7](https://github.com/baetheus/blaylock-dev/compare/v2.10.6...v2.10.7) (2019-11-10)
+
+
+### Bug Fixes
+
+* fix v tag for versionUrl in prod env ([2730237](https://github.com/baetheus/blaylock-dev/commit/27302379da0ced311442c5c67b875f3b774131d1))
+
 ### [2.10.6](https://github.com/baetheus/blaylock-dev/compare/v2.10.5...v2.10.6) (2019-11-09)
 
 
