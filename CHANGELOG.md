@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.10.8](https://github.com/baetheus/blaylock-dev/compare/v2.10.7...v2.10.8) (2019-11-12)
+
+
+### Bug Fixes
+
+* hoisted refreshFolds in Home component ([c3e1656](https://github.com/baetheus/blaylock-dev/commit/c3e1656e5fada33d40736bab550777b40006af29))
+
 ### [2.10.7](https://github.com/baetheus/blaylock-dev/compare/v2.10.6...v2.10.7) (2019-11-10)
 
 
