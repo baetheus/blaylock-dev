@@ -14,6 +14,30 @@ import { getGists, getRepos, GistData, RepoData } from '~/store/github';
 export interface HomeProps {}
 
 const constPending = () => <Pending />;
+const constGists = refreshFold(
+  constPending,
+  constPending,
+  errors => (
+    <Failure title="Error getting data from github.com" error={errors} />
+  ),
+  (gists: GistData) => <Gists gists={gists.data.viewer.gists.nodes} />
+);
+const constRepos = refreshFold(
+  constPending,
+  constPending,
+  errors => (
+    <Failure title="Error getting data from github.com" error={errors} />
+  ),
+  (repos: RepoData) => <Repos repos={repos.data.viewer.repositories.nodes} />
+);
+const constArticles = refreshFold(
+  constPending,
+  constPending,
+  errors => (
+    <Failure title="Error getting articles from dev.to" error={errors} />
+  ),
+  (articles: ArticlesData) => <Articles articles={articles} />
+);
 
 /**
  * @name Home
@@ -26,7 +50,7 @@ export const Home: FunctionalComponent<HomeProps> = () => {
   const [articlesData] = useRedux(articlesDataL.get);
 
   useEffect(() => {
-    dispatch(getArticles.pending('baetheus'));
+    dispatch(getArticles.pending("baetheus"));
     dispatch(getRepos.pending());
     dispatch(getGists.pending());
   }, []);
@@ -43,41 +67,9 @@ export const Home: FunctionalComponent<HomeProps> = () => {
         </h3>
       </section>
       <section class="fld-sm-row fld-col flg-5 vwc-p100">
-        {refreshFold(
-          constPending,
-          constPending,
-          errors => (
-            <Failure
-              title="Error getting data from github.com"
-              error={errors}
-            />
-          ),
-          (gists: GistData) => <Gists gists={gists.data.viewer.gists.nodes} />
-        )(gistsData)}
-        {refreshFold(
-          constPending,
-          constPending,
-          errors => (
-            <Failure
-              title="Error getting data from github.com"
-              error={errors}
-            />
-          ),
-          (repos: RepoData) => (
-            <Repos repos={repos.data.viewer.repositories.nodes} />
-          )
-        )(reposData)}
-        {refreshFold(
-          constPending,
-          constPending,
-          errors => (
-            <Failure
-              title="Error getting articles from dev.to"
-              error={errors}
-            />
-          ),
-          (articles: ArticlesData) => <Articles articles={articles} />
-        )(articlesData)}
+        {constGists(gistsData)}
+        {constRepos(reposData)}
+        {constArticles(articlesData)}
       </section>
       <Footer link={environment.versionUrl} version={environment.version} />
     </main>
