@@ -1,15 +1,15 @@
-import { refreshFold } from '@nll/datum/lib/DatumEither';
-import { FunctionalComponent, h } from 'preact';
-import { useEffect } from 'preact/hooks';
-import { Failure, Pending } from '~/components/Async';
-import { Articles } from '~/components/Devto';
-import { Footer } from '~/components/Footer';
-import { Gists, Repos } from '~/components/Github';
-import { Header } from '~/components/Header';
-import { environment } from '~/environments';
-import { articlesDataL, gistsDataL, reposDataL, useRedux } from '~/store';
-import { Articles as ArticlesData, getArticles } from '~/store/devto';
-import { getGists, getRepos, GistData, RepoData } from '~/store/github';
+import { refreshFold } from "@nll/datum/lib/DatumEither";
+import { FunctionalComponent, h } from "preact";
+import { useEffect } from "preact/hooks";
+import { Failure, Pending } from "~/components/Async";
+import { Articles } from "~/components/Devto";
+import { Footer } from "~/components/Footer";
+import { Gists, Repos } from "~/components/Github";
+import { Header } from "~/components/Header";
+import { environment } from "~/environments";
+import { articlesDataL, gistsDataL, reposDataL, useRedux } from "~/store";
+import { Articles as ArticlesData, getArticles } from "~/store/devto";
+import { getGists, getRepos, GistData, RepoData } from "~/store/github";
 
 export interface HomeProps {}
 
@@ -67,9 +67,9 @@ export const Home: FunctionalComponent<HomeProps> = () => {
         </h3>
       </section>
       <section class="fld-sm-row fld-col flg-5 vwc-p100">
-        {constGists(gistsData)}
-        {constRepos(reposData)}
         {constArticles(articlesData)}
+        {constRepos(reposData)}
+        {constGists(gistsData)}
       </section>
       <Footer link={environment.versionUrl} version={environment.version} />
     </main>

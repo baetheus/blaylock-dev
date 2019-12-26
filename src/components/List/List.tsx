@@ -1,4 +1,4 @@
-import { Fragment, FunctionalComponent, h, VNode } from 'preact';
+import { Fragment, FunctionalComponent, h, VNode } from "preact";
 
 export interface ListProps {
   title: VNode<any> | null;
@@ -12,7 +12,7 @@ export interface ListProps {
 export const List: FunctionalComponent<ListProps> = ({ children, title }) => {
   return (
     <Fragment>
-      <section className="fld-col flg-4">
+      <section className="fld-col flg-4 bounceIn">
         {title}
         <ul class="fld-col flg-4">{children}</ul>
       </section>
