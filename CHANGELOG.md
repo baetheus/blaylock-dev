@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.11.0](https://github.com/baetheus/blaylock-dev/compare/v2.10.8...v2.11.0) (2019-12-26)
+
+
+### Features
+
+* add animations to lists, change order of lists ([5f4d864](https://github.com/baetheus/blaylock-dev/commit/5f4d8643b650cd5770a5c3bb54d9cbceb3893f47))
+
 ### [2.10.8](https://github.com/baetheus/blaylock-dev/compare/v2.10.7...v2.10.8) (2019-11-12)
 
 
