@@ -1,6 +1,6 @@
-import { Either, isLeft } from 'fp-ts/lib/Either';
-import { Observable, of, throwError } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { Either, fold } from "fp-ts/lib/Either";
+import { Observable, of, throwError } from "rxjs";
+import { mergeMap } from "rxjs/operators";
 
 /**
  * @name toObservable
@@ -8,7 +8,7 @@ import { mergeMap } from 'rxjs/operators';
  * the error channel containing the L type or a new observable with the R type
  */
 export const toObservable = <L, R>(e: Either<L, R>): Observable<R> =>
-  isLeft(e) ? throwError(e.left) : of(e.right);
+  fold<L, R, Observable<R>>(throwError, of)(e);
 
 /**
  * @name fromEither
