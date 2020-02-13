@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.12.1](https://github.com/baetheus/blaylock-dev/compare/v2.12.0...v2.12.1) (2020-02-13)
+
+
+### Bug Fixes
+
+* change version link to github release page ([ca3dd4e](https://github.com/baetheus/blaylock-dev/commit/ca3dd4e41b9a5bb34af59e290b2ab2afbf714290))
+
 ## [2.12.0](https://github.com/baetheus/blaylock-dev/compare/v2.11.1...v2.12.0) (2020-02-13)
 
 
