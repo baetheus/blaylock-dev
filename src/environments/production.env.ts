@@ -1,4 +1,16 @@
+import * as E from 'fp-ts/lib/Either';
+import { pipe } from 'fp-ts/lib/pipeable';
+
+import * as pkg from '../../package.json';
+
+import { Package } from './validators';
 import { Environment } from './environment';
+
+const version: string = pipe(
+  Package.decode(pkg),
+  E.map(p => p.version),
+  E.getOrElse(() => 'Unknown')
+);
 
 export const environment: Environment = {
   production: true,
@@ -6,5 +18,5 @@ export const environment: Environment = {
   showLogs: false,
   refreshInterval: 5 * 1000,
   versionUrl: 'https://gitlab.com/baetheus/blaylock-dev/-/tags/',
-  version: process.env.CI_COMMIT_TAG || 'Unknown',
+  version,
 };
