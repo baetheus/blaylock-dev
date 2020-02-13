@@ -1,8 +1,0 @@
-image: 'baetheus/firebase:alpine'
-
-deploy:
-  stage: deploy
-  only:
-    - tags
-  script:
-    - firebase deploy --token $FIREBASE_TOKEN
