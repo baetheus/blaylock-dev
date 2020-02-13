@@ -19,6 +19,9 @@ export const HeaderNav: FunctionalComponent<HeaderNavProps> = () => {
         <li>
           <Link href="/about">About</Link>
         </li>
+        <li>
+          <Link href="/colophon">Colophon</Link>
+        </li>
       </ul>
     </nav>
   );
