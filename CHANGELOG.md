@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.12.0](https://github.com/baetheus/blaylock-dev/compare/v2.11.1...v2.12.0) (2020-02-13)
+
+
+### Features
+
+* remove devto from home columns, fix redux types ([3391c0c](https://github.com/baetheus/blaylock-dev/commit/3391c0c7f40f85e8950a899d13be18341633ae7a))
+
+
+### Bug Fixes
+
+* pull version from package.json ([d46fdd5](https://github.com/baetheus/blaylock-dev/commit/d46fdd53274c856db9d15d03b4301d0ab90fec0a))
+
 ### [2.11.1](https://github.com/baetheus/blaylock-dev/compare/v2.11.0...v2.11.1) (2020-01-30)
 
 
