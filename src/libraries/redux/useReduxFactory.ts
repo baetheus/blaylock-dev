@@ -1,6 +1,6 @@
 import { Context } from 'preact';
 import { useContext, useEffect, useState } from 'preact/hooks';
-import { Store } from 'redux';
+import { Store, Action } from 'redux';
 
 /**
  * Creates a useRedux hook.
@@ -12,7 +12,7 @@ import { Store } from 'redux';
  *
  * Updates only when comparator detects a change (by default on strict equality change)
  */
-export const useReduxFactory = <S>(context: Context<Store<S>>) => <O>(
+export const useReduxFactory = <S, A extends Action<any>>(context: Context<Store<S, A>>) => <O>(
   selector: (s: S) => O,
   comparator: (p: O, n: O) => boolean = (p, n) => p !== n
 ) => {

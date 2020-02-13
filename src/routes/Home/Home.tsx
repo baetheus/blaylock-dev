@@ -2,13 +2,11 @@ import { refreshFold } from "@nll/datum/lib/DatumEither";
 import { FunctionalComponent, h } from "preact";
 import { useEffect } from "preact/hooks";
 import { Failure, Pending } from "~/components/Async";
-import { Articles } from "~/components/Devto";
 import { Footer } from "~/components/Footer";
 import { Gists, Repos } from "~/components/Github";
 import { Header } from "~/components/Header";
 import { environment } from "~/environments";
-import { articlesDataL, gistsDataL, reposDataL, useRedux } from "~/store";
-import { Articles as ArticlesData, getArticles } from "~/store/devto";
+import { gistsDataL, reposDataL, useRedux } from "~/store";
 import { getGists, getRepos, GistData, RepoData } from "~/store/github";
 
 export interface HomeProps {}
@@ -30,14 +28,6 @@ const constRepos = refreshFold(
   ),
   (repos: RepoData) => <Repos repos={repos.data.viewer.repositories.nodes} />
 );
-const constArticles = refreshFold(
-  constPending,
-  constPending,
-  errors => (
-    <Failure title="Error getting articles from dev.to" error={errors} />
-  ),
-  (articles: ArticlesData) => <Articles articles={articles} />
-);
 
 /**
  * @name Home
@@ -47,10 +37,8 @@ const constArticles = refreshFold(
 export const Home: FunctionalComponent<HomeProps> = () => {
   const [gistsData, dispatch] = useRedux(gistsDataL.get);
   const [reposData] = useRedux(reposDataL.get);
-  const [articlesData] = useRedux(articlesDataL.get);
 
   useEffect(() => {
-    dispatch(getArticles.pending("baetheus"));
     dispatch(getRepos.pending());
     dispatch(getGists.pending());
   }, []);
@@ -67,7 +55,6 @@ export const Home: FunctionalComponent<HomeProps> = () => {
         </h3>
       </section>
       <section class="fld-sm-row fld-col flg-5 vwc-p100">
-        {constArticles(articlesData)}
         {constRepos(reposData)}
         {constGists(gistsData)}
       </section>
