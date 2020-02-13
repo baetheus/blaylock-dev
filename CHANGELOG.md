@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.13.1](https://github.com/baetheus/blaylock-dev/compare/v2.13.0...v2.13.1) (2020-02-13)
+
+
+### Bug Fixes
+
+* add redirects file to output ([0f09704](https://github.com/baetheus/blaylock-dev/commit/0f097044346ae52072a623685d6f7fcf44c214c2))
+
 ## [2.13.0](https://github.com/baetheus/blaylock-dev/compare/v2.12.1...v2.13.0) (2020-02-13)
 
 
