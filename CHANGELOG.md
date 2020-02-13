@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.13.0](https://github.com/baetheus/blaylock-dev/compare/v2.12.1...v2.13.0) (2020-02-13)
+
+
+### Features
+
+* added Colophon page ([8f61fa0](https://github.com/baetheus/blaylock-dev/commit/8f61fa0cf48ac37fa4884f8aba2b6c575edb6c2a))
+
 ### [2.12.1](https://github.com/baetheus/blaylock-dev/compare/v2.12.0...v2.12.1) (2020-02-13)
 
 
