@@ -17,6 +17,6 @@ export const environment: Environment = {
   useMocks: false,
   showLogs: false,
   refreshInterval: 5 * 1000,
-  versionUrl: 'https://gitlab.com/baetheus/blaylock-dev/-/tags/',
+  versionUrl: 'https://github.com/baetheus/blaylock-dev/releases/tag/v',
   version,
 };
