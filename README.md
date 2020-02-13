@@ -21,9 +21,3 @@ This repository uses standard version. After you've made changes and are ready t
 `npm run release`
 
 This will add any new commit messages to the CHANGELOG.md file.
-
-Additionally, to deploy use firebase:
-
-`firebase deploy`
-
-This will fail if you don't have firebase tools or access to deploy.
