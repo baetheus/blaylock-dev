@@ -1,15 +1,16 @@
-import { DatumEither, initial } from '@nll/datum/lib/DatumEither';
-import { asyncActionCreators } from '@nll/dux/lib/Actions';
-import { asyncExhaustMap } from '@nll/dux/lib/AsyncMap';
-import { asyncReducerFactory, reducerDefaultFn } from '@nll/dux/lib/Reducers';
-import { Lens } from 'monocle-ts';
-import { Epic } from 'redux-observable';
-import { ajax } from 'rxjs/ajax';
-import { mapDecode } from '~/libraries/io-ts';
-import { mapAjaxJson } from '~/libraries/rxjs';
-
-import * as queries from './queries';
-import { GistData, RepoData } from './validators';
+import { actionCreatorFactory } from "@nll/dux/lib/Actions";
+import { ajax } from "rxjs/ajax";
+import { asyncReducerFactory, reducerFn } from "@nll/dux/lib/Reducers";
+import { DatumEither, initial } from "@nll/datum/lib/DatumEither";
+import { GistData, RepoData } from "./validators";
+import { Lens } from "monocle-ts";
+import { mapAjaxJson } from "~/libraries/rxjs";
+import { mapDecode } from "~/libraries/io-ts";
+import * as queries from "./queries";
+import { createStore } from "@nll/dux/lib/Store";
+import { asyncExhaustMap } from "@nll/dux/lib/AsyncMap";
+import { useStoreFactory } from "~/libraries/dux/useStoreFactory";
+import { loggingMetaReducer } from "~/libraries/dux";
 
 interface GithubStore {
   gists: DatumEither<Error, GistData>;
@@ -18,57 +19,66 @@ interface GithubStore {
 
 const INIT_GITHUB_STORE: GithubStore = {
   gists: initial,
-  repos: initial,
+  repos: initial
 };
 
 const githubStoreL = Lens.fromProp<GithubStore>();
 
-export const reposL = githubStoreL('repos');
-export const gistsL = githubStoreL('gists');
+const reposL = githubStoreL("repos");
+const gistsL = githubStoreL("gists");
+
+const API_TOKEN = process.env.GITHUB_API_TOKEN;
 
 /**
- * Github Repos Store Controls
+ * Actions
  */
-export const getRepos = asyncActionCreators<void, RepoData, Error>(
-  'GET_GITHUB_REPOS'
-);
-export const getReposEpic: Epic = asyncExhaustMap(getRepos, () =>
+const a = actionCreatorFactory("GITHUB");
+export const getRepos = a.async<void, RepoData, Error>("GET_GITHUB_REPOS");
+export const getGists = a.async<void, GistData, Error>("GET_GITHUB_GISTS");
+
+/**
+ * Epics
+ */
+const getReposEpic = asyncExhaustMap(getRepos, () =>
   ajax({
-    url: 'https://api.github.com/graphql',
-    method: 'POST',
+    url: "https://api.github.com/graphql",
+    method: "POST",
     body: JSON.stringify({
-      query: queries.repos(),
+      query: queries.repos()
     }),
     headers: {
-      Authorization: `Bearer ${process.env.GITHUB_API_TOKEN}`,
-    },
-  }).pipe(
-    mapAjaxJson,
-    mapDecode(RepoData)
-  )
+      Authorization: `Bearer ${API_TOKEN}`
+    }
+  }).pipe(mapAjaxJson, mapDecode(RepoData))
 );
 
-export const getGists = asyncActionCreators<void, GistData, Error>(
-  'GET_GITHUB_GISTS'
-);
-export const getGistsEpic: Epic = asyncExhaustMap(getGists, () =>
+const getGistsEpic = asyncExhaustMap(getGists, () =>
   ajax({
-    url: 'https://api.github.com/graphql',
-    method: 'POST',
+    url: "https://api.github.com/graphql",
+    method: "POST",
     body: JSON.stringify({
-      query: queries.gists(),
+      query: queries.gists()
     }),
     headers: {
-      Authorization: `Bearer ${process.env.GITHUB_API_TOKEN}`,
-    },
-  }).pipe(
-    mapAjaxJson,
-    mapDecode(GistData)
-  )
+      Authorization: `Bearer ${API_TOKEN}`
+    }
+  }).pipe(mapAjaxJson, mapDecode(GistData))
 );
 
-export const githubReducer = reducerDefaultFn(
-  INIT_GITHUB_STORE,
+/**
+ * Reducers
+ */
+const githubReducer = reducerFn(
   asyncReducerFactory(getGists, gistsL),
   asyncReducerFactory(getRepos, reposL)
 );
+
+/**
+ * Store
+ */
+const githubStore = createStore(INIT_GITHUB_STORE)
+  .addMetaReducers(loggingMetaReducer())
+  .addReducers(githubReducer)
+  .addRunOnces(getReposEpic, getGistsEpic);
+
+export const useGithub = useStoreFactory(githubStore);

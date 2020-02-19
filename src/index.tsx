@@ -2,7 +2,7 @@ if (process.env.NODE_ENV === "development") {
   require("preact/debug");
 }
 
-import "~/store/store";
+import "~/store/github";
 
 import { h, render } from "preact";
 import { Router } from "preact-router";

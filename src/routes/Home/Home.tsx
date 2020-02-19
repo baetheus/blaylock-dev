@@ -6,8 +6,8 @@ import { Footer } from "~/components/Footer";
 import { Gists, Repos } from "~/components/Github";
 import { Header } from "~/components/Header";
 import { environment } from "~/environments";
-import { gistsDataL, reposDataL, useRedux } from "~/store";
-import { getGists, getRepos, GistData, RepoData } from "~/store/github";
+import { useGithub, GistData, RepoData, getGists, getRepos } from "~/store/github";
+import { identity } from "fp-ts/lib/function";
 
 export interface HomeProps {}
 
@@ -15,17 +15,13 @@ const constPending = () => <Pending />;
 const constGists = refreshFold(
   constPending,
   constPending,
-  errors => (
-    <Failure title="Error getting data from github.com" error={errors} />
-  ),
+  errors => <Failure title="Error getting data from github.com" error={errors} />,
   (gists: GistData) => <Gists gists={gists.data.viewer.gists.nodes} />
 );
 const constRepos = refreshFold(
   constPending,
   constPending,
-  errors => (
-    <Failure title="Error getting data from github.com" error={errors} />
-  ),
+  errors => <Failure title="Error getting data from github.com" error={errors} />,
   (repos: RepoData) => <Repos repos={repos.data.viewer.repositories.nodes} />
 );
 
@@ -35,8 +31,7 @@ const constRepos = refreshFold(
  * <Home />
  */
 export const Home: FunctionalComponent<HomeProps> = () => {
-  const [gistsData, dispatch] = useRedux(gistsDataL.get);
-  const [reposData] = useRedux(reposDataL.get);
+  const [{ gists, repos }, dispatch] = useGithub(identity);
 
   useEffect(() => {
     dispatch(getRepos.pending());
@@ -48,15 +43,14 @@ export const Home: FunctionalComponent<HomeProps> = () => {
       <Header />
       <section>
         <h3 class="mwxr-7 pwx-7 pwy-5 ct-b1">
-          Hi, I'm Brandon Blaylock. I work as a front end engineer on web and
-          native applications, but I also write non-ui stuff from time to time.
-          Following are the most recent open source projects or blog entries
-          that I've contributed to.
+          Hi, I'm Brandon Blaylock. I work as a front end engineer on web and native applications,
+          but I also write non-ui stuff from time to time. Following are the most recent open source
+          projects or blog entries that I've contributed to.
         </h3>
       </section>
       <section class="fld-sm-row fld-col flg-5 vwc-p100">
-        {constRepos(reposData)}
-        {constGists(gistsData)}
+        {constRepos(repos)}
+        {constGists(gists)}
       </section>
       <Footer link={environment.versionUrl} version={environment.version} />
     </main>
