@@ -1,16 +1,17 @@
-import { actionCreatorFactory } from "@nll/dux/lib/Actions";
+import { actionCreatorFactory } from "@nll/dux/Actions";
 import { ajax } from "rxjs/ajax";
-import { asyncReducerFactory, reducerFn } from "@nll/dux/lib/Reducers";
-import { DatumEither, initial } from "@nll/datum/lib/DatumEither";
+import { asyncExhaustMap } from "@nll/dux/Operators";
+import { asyncReducerFactory, reducerFn } from "@nll/dux/Reducers";
+import { createStore } from "@nll/dux/Store";
+import { useStoreFactory } from "@nll/dux/React";
+import { DatumEither, initial } from "@nll/datum/DatumEither";
 import { GistData, RepoData } from "./validators";
 import { Lens } from "monocle-ts";
+import { loggingMetaReducer } from "~/libraries/dux";
 import { mapAjaxJson } from "~/libraries/rxjs";
 import { mapDecode } from "~/libraries/io-ts";
 import * as queries from "./queries";
-import { createStore } from "@nll/dux/lib/Store";
-import { asyncExhaustMap } from "@nll/dux/lib/AsyncMap";
-import { useStoreFactory } from "~/libraries/dux/useStoreFactory";
-import { loggingMetaReducer } from "~/libraries/dux";
+import { useState, useEffect } from "preact/hooks";
 
 interface GithubStore {
   gists: DatumEither<Error, GistData>;
@@ -81,4 +82,4 @@ const githubStore = createStore(INIT_GITHUB_STORE)
   .addReducers(githubReducer)
   .addRunOnces(getReposEpic, getGistsEpic);
 
-export const useGithub = useStoreFactory(githubStore);
+export const useGithub = useStoreFactory(githubStore, useState, useEffect);

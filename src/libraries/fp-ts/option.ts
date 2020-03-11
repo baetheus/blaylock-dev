@@ -1,7 +1,7 @@
-import { sequenceS, sequenceT } from 'fp-ts/lib/Apply';
-import { chain, none, Option, option, some } from 'fp-ts/lib/Option';
-import { pipe } from 'fp-ts/lib/pipeable';
-import { GuardedType, Predicate } from '~/libraries/typescript';
+import { sequenceS, sequenceT } from "fp-ts/es6/Apply";
+import { chain, none, Option, option, some } from "fp-ts/es6/Option";
+import { pipe } from "fp-ts/es6/pipeable";
+import { GuardedType, Predicate } from "~/libraries/typescript";
 
 /**
  * Takes in an optional array and chains empty arrays to none

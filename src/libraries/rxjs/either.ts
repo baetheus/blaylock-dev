@@ -1,4 +1,4 @@
-import { Either, fold } from "fp-ts/lib/Either";
+import { Either, fold } from "fp-ts/es6/Either";
 import { Observable, of, throwError } from "rxjs";
 import { mergeMap } from "rxjs/operators";
 
@@ -16,6 +16,5 @@ export const toObservable = <L, R>(e: Either<L, R>): Observable<R> =>
  * and returns an observable with the Either unwrapped, the L types in the error
  * channel and the R types in the next channel.
  */
-export const fromEither = <L, R>(
-  obs: Observable<Either<L, R>>
-): Observable<R> => obs.pipe(mergeMap(toObservable));
+export const fromEither = <L, R>(obs: Observable<Either<L, R>>): Observable<R> =>
+  obs.pipe(mergeMap(toObservable));

@@ -1,16 +1,17 @@
-import { actionCreatorFactory } from "@nll/dux/lib/Actions";
+import { actionCreatorFactory } from "@nll/dux/Actions";
 import { ajax } from "rxjs/ajax";
-import { asyncReducerFactory, reducerFn } from "@nll/dux/lib/Reducers";
-import { DatumEither, initial } from "@nll/datum/lib/DatumEither";
+import { asyncReducerFactory, reducerFn } from "@nll/dux/Reducers";
+import { DatumEither, initial } from "@nll/datum/DatumEither";
 import { filter, map, mergeMap } from "rxjs/operators";
-import { isLeft } from "fp-ts/lib/Either";
+import { isLeft } from "fp-ts/es6/Either";
 import { Lens } from "monocle-ts";
 import { of, throwError } from "rxjs";
-import { createStore } from "@nll/dux/lib/Store";
-import { asyncSwitchMap } from "@nll/dux/lib/AsyncMap";
+import { createStore } from "@nll/dux/Store";
+import { asyncSwitchMap } from "@nll/dux/Operators";
+import { useStoreFactory } from "@nll/dux/React";
+import { useState, useEffect } from "preact/hooks";
 
 import { Articles } from "./validators";
-import { useStoreFactory } from "~/libraries/dux/useStoreFactory";
 
 interface DevtoState {
   articles: DatumEither<Error, Articles>;
@@ -50,4 +51,4 @@ const devtoStore = createStore(INIT_DEVTO_STORE)
   .addReducers(getArticlesReducer)
   .addRunOnces(getArticlesEpic);
 
-export const useDevto = useStoreFactory(devtoStore);
+export const useDevto = useStoreFactory(devtoStore, useState, useEffect);

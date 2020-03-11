@@ -1,4 +1,4 @@
-import { refreshFold } from "@nll/datum/lib/DatumEither";
+import { refreshFold } from "@nll/datum/DatumEither";
 import { FunctionalComponent, h } from "preact";
 import { useEffect } from "preact/hooks";
 import { Failure, Pending } from "~/components/Async";
@@ -7,7 +7,7 @@ import { Gists, Repos } from "~/components/Github";
 import { Header } from "~/components/Header";
 import { environment } from "~/environments";
 import { useGithub, GistData, RepoData, getGists, getRepos } from "~/store/github";
-import { identity } from "fp-ts/lib/function";
+import { identity } from "fp-ts/es6/function";
 
 export interface HomeProps {}
 
