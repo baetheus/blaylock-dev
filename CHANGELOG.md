@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.14.0](https://github.com/baetheus/blaylock-dev/compare/v2.13.3...v2.14.0) (2020-03-11)
+
+
+### Features
+
+* finished migration to @nll/dux ([c608353](https://github.com/baetheus/blaylock-dev/commit/c608353d3d1c73a70c2004194ae84951b372000b))
+
 ### [2.13.3](https://github.com/baetheus/blaylock-dev/compare/v2.13.1...v2.13.3) (2020-03-11)
 
 
