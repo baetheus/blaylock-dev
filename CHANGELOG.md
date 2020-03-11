@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.13.3](https://github.com/baetheus/blaylock-dev/compare/v2.13.1...v2.13.3) (2020-03-11)
+
+
+### Bug Fixes
+
+* change readme to remove firebase reference ([2b1347c](https://github.com/baetheus/blaylock-dev/commit/2b1347c6d893758bbe3303751c7b43f9b53882aa))
+
 ### [2.13.2](https://github.com/baetheus/blaylock-dev/compare/v2.13.1...v2.13.2) (2020-03-04)
 
 
