@@ -8,7 +8,7 @@ export const Repository = t.intersection([
     updatedAt: DateFromISOString
   }),
   t.partial({
-    description: t.string
+    description: t.union([t.string, t.null])
   })
 ]);
 export type Repository = t.TypeOf<typeof Repository>;
@@ -27,7 +27,7 @@ export const Gist = t.intersection([
     )
   }),
   t.partial({
-    description: t.string
+    description: t.union([t.string, t.null])
   })
 ]);
 export type Gist = t.TypeOf<typeof Gist>;

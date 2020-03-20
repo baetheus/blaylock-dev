@@ -14,8 +14,8 @@
   "license": "MPL-2.0",
   "dependencies": {
     "@nll/css": "^8.6.0",
-    "@nll/datum": "^3.0.2",
-    "@nll/dux": "^8.1.1-prerelease.1",
+    "@nll/datum": "^3.0.3",
+    "@nll/dux": "^8.1.1-prerelease.2",
     "fp-ts": "^2.0.0",
     "io-ts": "^2.0.0",
     "io-ts-types": "^0.5.6",
