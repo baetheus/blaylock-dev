@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.14.1](https://github.com/baetheus/blaylock-dev/compare/v2.14.0...v2.14.1) (2020-03-20)
+
+
+### Bug Fixes
+
+* update github codecs to handle null fields ([63e1685](https://github.com/baetheus/blaylock-dev/commit/63e16853717c17505f0b7caa86b0d53e75a3c111))
+
 ## [2.14.0](https://github.com/baetheus/blaylock-dev/compare/v2.13.3...v2.14.0) (2020-03-11)
 
 
