@@ -5,6 +5,14 @@
     <h1>{{ section.title }}</h1>
   </header>
 
+  <nav>
+    <ul>
+      {% for page in section.pages %}
+      <li><a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+
   <article>
     {{ section.content | safe }}
   </article>
