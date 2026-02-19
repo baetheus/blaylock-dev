@@ -1,11 +1,14 @@
 {
+  "unstable": [
+    "bundle"
+  ],
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "preact"
   },
   "imports": {
     "@baetheus/fun": "jsr:@baetheus/fun@^3.0.0-rc.8",
-    "@baetheus/pick": "jsr:@baetheus/pick@^0.9.0",
+    "@baetheus/pick": "jsr:@baetheus/pick@^0.12.0",
     "preact": "npm:preact@10.27.2",
     "preact-iso": "npm:preact-iso@^2.11.1",
     "@/*": "./lib"
