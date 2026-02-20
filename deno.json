@@ -7,13 +7,14 @@
     "jsxImportSource": "preact"
   },
   "imports": {
+    "@/": "./",
     "@baetheus/fun": "jsr:@baetheus/fun@^3.0.0-rc.8",
-    "@baetheus/pick": "jsr:@baetheus/pick@^0.12.0",
+    "@baetheus/pick": "jsr:@baetheus/pick@^0.14.0",
+    "capnweb": "npm:capnweb@^0.5.0",
     "preact": "npm:preact@10.27.2",
-    "preact-iso": "npm:preact-iso@^2.11.1",
-    "@/*": "./lib"
+    "preact-iso": "npm:preact-iso@^2.11.1"
   },
   "tasks": {
-    "start": "deno run --allow-read=routes --allow-write --allow-net --unstable-bundle main.ts"
+    "start": "deno run --allow-read=./ --allow-write --allow-net main.ts"
   }
 }

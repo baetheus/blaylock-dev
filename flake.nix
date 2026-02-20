@@ -1,26 +1,18 @@
 {
-  description = "CHANGE ME";
+  description = "Deno Library: Magic String Routing";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/release-25.11";
   inputs.utils.url = "github:numtide/flake-utils";
 
   outputs = { self, nixpkgs, utils }:
     utils.lib.eachDefaultSystem (system: let
-      pkgs = import nixpkgs { inherit system; };
-      mkScript = pkgs.writeShellScriptBin;
-
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
       shell = with pkgs; mkShell {
-        packages = [
-          # Insert packages here
-          deno
-
-          # Insert shell aliases here
-          (mkScript "hello" ''echo $SOME_ENV_VAR'')
-        ];
-
-        shellHook = ''
-          export SOME_ENV_VAR="Hello World"
-        '';
+        # Insert Packages Here
+        packages = [ deno ];
       };
     in {
       devShells.default = shell;

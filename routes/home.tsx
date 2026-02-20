@@ -1,5 +1,9 @@
-import { client_default } from "@baetheus/pick/tokens";
+import * as T from "@baetheus/pick/tokens";
 
-export default client_default.create(function () {
-  return <h1>Home</h1>;
-});
+export function Home() {
+  return <h1>Hello Brandon</h1>;
+}
+
+export const default_route = T.client_default.create(Home);
+
+export const index_route = T.client_route.create(Home);

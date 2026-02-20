@@ -2,14 +2,16 @@
   "version": "5",
   "specifiers": {
     "jsr:@baetheus/fun@^3.0.0-rc.8": "3.0.0-rc.8",
-    "jsr:@baetheus/pick@0.9": "0.9.0",
+    "jsr:@baetheus/pick@0.14": "0.14.0",
     "jsr:@std/fs@^1.0.17": "1.0.22",
     "jsr:@std/internal@^1.0.12": "1.0.12",
     "jsr:@std/media-types@^1.1.0": "1.1.0",
     "jsr:@std/path@^1.0.8": "1.1.4",
     "jsr:@std/path@^1.1.4": "1.1.4",
-    "npm:preact-iso@^2.11.1": "2.11.1_preact@10.27.2_preact-render-to-string@6.6.5__preact@10.27.2",
-    "npm:preact-render-to-string@^6.5.0": "6.6.5_preact@10.27.2",
+    "npm:@types/node@*": "24.2.0",
+    "npm:capnweb@0.5": "0.5.0",
+    "npm:preact-iso@^2.11.1": "2.11.1_preact@10.27.2_preact-render-to-string@6.6.3__preact@10.27.2",
+    "npm:preact-render-to-string@^6.5.0": "6.6.3_preact@10.27.2",
     "npm:preact@10.27.2": "10.27.2",
     "npm:preact@^10.24.0": "10.27.2"
   },
@@ -17,8 +19,8 @@
     "@baetheus/fun@3.0.0-rc.8": {
       "integrity": "d84c6f3d403bd91c397c55a5736b1ea39e9054f7a8b0fa689a01743d3657b1ea"
     },
-    "@baetheus/pick@0.9.0": {
-      "integrity": "6fdca6a1ac4a3dc9ae741cfe0921a47eba950890d294cbac952325b14784d64e",
+    "@baetheus/pick@0.14.0": {
+      "integrity": "f0eedd0bc44c8694e7466a4d4f6cfbfb2f7bc9c27af7536ee175b10cc8f46748",
       "dependencies": [
         "jsr:@baetheus/fun",
         "jsr:@std/fs",
@@ -49,27 +51,40 @@
     }
   },
   "npm": {
-    "preact-iso@2.11.1_preact@10.27.2_preact-render-to-string@6.6.5__preact@10.27.2": {
+    "@types/node@24.2.0": {
+      "integrity": "sha512-3xyG3pMCq3oYCNg7/ZP+E1ooTaGB4cG8JWRsqqOYQdbWNY4zbaV0Ennrd7stjiJEFZCaybcIgpTjJWHRfBSIDw==",
+      "dependencies": [
+        "undici-types"
+      ]
+    },
+    "capnweb@0.5.0": {
+      "integrity": "sha512-fujruGZ4jw3u7mzjqgU+Iad9ms2pS7jwEaAR42bbQe9Eax8Rq+MAOCLT1zmmL5AB/wuKf+0YoCYxfcnSfk2/1Q=="
+    },
+    "preact-iso@2.11.1_preact@10.27.2_preact-render-to-string@6.6.3__preact@10.27.2": {
       "integrity": "sha512-rLy0RmzP/hrDjnFdnEblxFgKtzUj4njkHrpGJBGS7S4QuYw1zv0lA38qsWpeAAB10JAz/hF2CsHrLen9ufCtbw==",
       "dependencies": [
         "preact",
         "preact-render-to-string"
       ]
     },
-    "preact-render-to-string@6.6.5_preact@10.27.2": {
-      "integrity": "sha512-O6MHzYNIKYaiSX3bOw0gGZfEbOmlIDtDfWwN1JJdc/T3ihzRT6tGGSEWE088dWrEDGa1u7101q+6fzQnO9XCPA==",
+    "preact-render-to-string@6.6.3_preact@10.27.2": {
+      "integrity": "sha512-7oHG7jzjriqsFPkSPiPnzrQ0GcxFm6wOkYWNdStK5Ks9YlWSQQXKGBRAX4nKDdqX7HAQuRvI4pZNZMycK4WwDw==",
       "dependencies": [
         "preact"
       ]
     },
     "preact@10.27.2": {
       "integrity": "sha512-5SYSgFKSyhCbk6SrXyMpqjb5+MQBgfvEKE/OC+PujcY34sOpqtr+0AZQtPYx5IA6VxynQ7rUPCtKzyovpj9Bpg=="
+    },
+    "undici-types@7.10.0": {
+      "integrity": "sha512-t5Fy/nfn+14LuOc2KNYg75vZqClpAiqscVvMygNnlsHBFpSXdJaYtXMcdNLpl/Qvc3P2cB3s6lOV51nqsFq4ag=="
     }
   },
   "workspace": {
     "dependencies": [
       "jsr:@baetheus/fun@^3.0.0-rc.8",
-      "jsr:@baetheus/pick@0.9",
+      "jsr:@baetheus/pick@0.14",
+      "npm:capnweb@0.5",
       "npm:preact-iso@^2.11.1",
       "npm:preact@10.27.2"
     ]

@@ -30,7 +30,7 @@ async function main() {
   pipe(
     await build(
       new URL("./routes", import.meta.url).pathname,
-      "Sample Site",
+      "blaylock.dev",
       (path) => import(path),
     ),
     Either.match(
@@ -42,13 +42,18 @@ async function main() {
         console.log("Site built successfully!");
         console.log(JSON.stringify(site, null, 2));
 
-        console.log("\nStarting server on http://localhost:8000");
-
         const router = R.router(R.context(null), {
           routes: site.site_routes.map((r) => r.route),
           middlewares: [logging_middleware],
         });
-        Deno.serve({ port: 8000 }, router.handle);
+        const server = Deno.serve(router.handle);
+        console.log(
+          `Server started at ${server.addr.hostname}:${server.addr.port}`,
+        );
+        Deno.addSignalListener("SIGINT", () => {
+          console.log("Stopping server...");
+          server.shutdown();
+        });
       },
     ),
   );
